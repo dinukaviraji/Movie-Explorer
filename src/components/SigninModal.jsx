@@ -1,4 +1,5 @@
-import { Modal, Box, Typography, TextField, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Modal, Box, Typography, TextField, Button, Snackbar, Alert } from '@mui/material';
 
 const style = {
   position: 'fixed',
@@ -13,33 +14,100 @@ const style = {
 };
 
 const SigninModal = ({ open, onClose }) => {
-return (
-    <Modal
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  });
+
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = () => {
+    // Save data to localStorage
+    localStorage.setItem('user', JSON.stringify(formData));
+
+    // Show success snackbar
+    setSnackbar({ open: true, message: 'Account successfully created!', severity: 'success' });
+
+    // Close modal
+    onClose();
+  };
+
+  return (
+    <>
+      <Modal
         open={open}
         onClose={onClose}
         BackdropProps={{
-            sx: {
-                backdropFilter: 'blur(5px)',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            },
+          sx: {
+            backdropFilter: 'blur(5px)',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          },
         }}
-    >
+      >
         <Box sx={style}>
-            <Typography variant="h6" fontWeight="bold" >
-                Create an Account!
-            </Typography>
+          <Typography variant="h6" fontWeight="bold">
+            Create an Account!
+          </Typography>
 
-            <TextField label="First Name" fullWidth margin="normal" />
-            <TextField label="Second Name" fullWidth margin="normal" />
-            <TextField label="Email" fullWidth margin="normal" />
-            <TextField label="Password" type="password" fullWidth margin="normal" />
-            <Button variant="contained" fullWidth sx={{ my: 2 }}>
-                Sign Up
-            </Button>
-
+          <TextField
+            label="First Name"
+            fullWidth
+            margin="normal"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+          />
+          <TextField
+            label="Second Name"
+            fullWidth
+            margin="normal"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+          />
+          <TextField
+            label="Email"
+            fullWidth
+            margin="normal"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            fullWidth
+            margin="normal"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          <Button variant="contained" fullWidth sx={{ my: 2 }} onClick={handleSubmit}>
+            Sign Up
+          </Button>
         </Box>
-    </Modal>
-);
+      </Modal>
+
+      {/* Snackbar for success message */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        <Alert severity={snackbar.severity} onClose={() => setSnackbar({ ...snackbar, open: false })}>
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
+    </>
+  );
 };
 
 export default SigninModal;

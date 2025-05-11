@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography, Rating, Icon, IconButton } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
+// This component displays a single movie card
 const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
   const navigate = useNavigate();
 
@@ -16,8 +17,9 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
         position: 'relative',
         '&:hover': { boxShadow: 6 },
       }}
-      onClick={() => navigate(`/movie/${movie.id}`)}
+      onClick={() => navigate(`/movie/${movie.id}`)} // Go to details page when card is clicked
     >
+      {/* Movie poster */}
       <CardMedia
         component="img"
         height="300"
@@ -29,6 +31,7 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
         alt={movie.title}
         
       />
+      {/* Movie title and release info */}
       <CardContent>
         <Typography variant="subtitle1" noWrap>
           {movie.title}

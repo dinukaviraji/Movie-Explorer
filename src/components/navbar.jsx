@@ -1,7 +1,6 @@
 import { AppBar, Toolbar, IconButton, Typography, Button, Drawer, List, ListItem, ListItemText, Box, Switch} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState, useEffect } from 'react';
-import TakeoutDiningIcon from '@mui/icons-material/TakeoutDining';
 import LoginModal from './LoginModal';
 import { Link } from 'react-router-dom';
 import logo from '../assets/popcorn.png'
@@ -50,7 +49,6 @@ return (
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center' }} >
                     <img src={logo} alt="Logo" style={{ width: 42, height: 42, marginRight: 8 }} />
-                    {/* <TakeoutDiningIcon sx={{ fontSize: 40, mr: 1 }} /> */}
                     PopCorn
                 </Typography>
 

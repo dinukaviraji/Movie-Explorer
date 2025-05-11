@@ -1,6 +1,6 @@
 // src/components/LoginModal.jsx
 import React from 'react';
-import { Modal, Box, Typography, TextField, Button } from '@mui/material';
+import { Modal, Box, Typography, TextField, Button, Snackbar, Alert } from '@mui/material';
 import SigninModal from './SigninModal';
 import { useState } from 'react';
 
@@ -18,15 +18,31 @@ const style = {
 
 const LoginModal = ({ open, onClose }) => {
     const [signinOpen, setSigninOpen] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'info' });
 
+    const handleLogin = () => {
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+    
+        if (!storedUser) {
+          setSnackbar({ open: true, message: 'No account found. Please sign up first.', severity: 'warning' });
+          return;
+        }
+    
+        if (email === storedUser.email && password === storedUser.password) {
+          setSnackbar({ open: true, message: 'Login successful!', severity: 'success' });
+          onClose(); // Close modal after login
+        } else {
+          setSnackbar({ open: true, message: 'Invalid email or password.', severity: 'error' });
+        }
+      };
 
 return (
     <>
         <Modal
             open={open}
             onClose={onClose}
-            // aria-labelledby="login-title"
-            // aria-describedby="login-description"
             BackdropProps={{
                 sx: {
                     backdropFilter: 'blur(5px)',
@@ -41,9 +57,11 @@ return (
                 <Typography fontSize= '1rem' mb={2}>
                     Log in to continue
                 </Typography>
-                <TextField label="Email" fullWidth margin="normal" />
-                <TextField label="Password" type="password" fullWidth margin="normal" />
-                <Button variant="contained" fullWidth sx={{ my: 2 }}>
+                <TextField label="Email" fullWidth margin="normal" value={email}
+                    onChange={(e) => setEmail(e.target.value)}/>
+                <TextField label="Password" type="password" fullWidth margin="normal" value={password}
+                    onChange={(e) => setPassword(e.target.value)}/>
+                <Button variant="contained" fullWidth sx={{ my: 2 }} onClick={handleLogin}>
                     Log In
                 </Button>
                 <Typography> Don't have an account? <Button onClick={() => {setSigninOpen(true); onClose();} } > 
@@ -52,6 +70,16 @@ return (
         </Modal>
 
         <SigninModal open={signinOpen} onClose={() => setSigninOpen(false)} />
+
+        <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}>
+            
+        <Alert severity={snackbar.severity} onClose={() => setSnackbar({ ...snackbar, open: false })}>
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </>
 );
 };

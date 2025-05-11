@@ -5,32 +5,36 @@ import HeroSection from '../components/HeroSection';
 import { Button, Box, Typography} from '@mui/material';
 
 const Homepage = () => {
-  const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
+  const [movies, setMovies] = useState([]);  // Store list of trending movies
+  const [page, setPage] = useState(1); // Current page number for pagination
 
+  // Fetch trending movies 
   const fetchMovies = async () => {
     const newMovies = await getTrendingMovies(page);
-    setMovies((prev) => page === 1 ? newMovies : [...prev, ...newMovies]);
+    // If it's the first page, replace the list. Otherwise, add new movies to the list.
+    setMovies((prev) => page === 1 ? newMovies : [...prev, ...newMovies]); 
   };
 
   useEffect(() => {
     fetchMovies(); // initial load
   }, [page]);
 
+  // Load more movies by increasing the page number
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
   };
 
+  // Load favorites from localStorage when the component mounts
   const [favorites, setFavorites] = useState(() => {
     const stored = localStorage.getItem('favorites');
     return stored ? JSON.parse(stored) : [];
   });
   
   const toggleFavorite = (movie) => {
-    const exists = favorites.some((fav) => fav.id === movie.id);
+    const exists = favorites.some((fav) => fav.id === movie.id); // Check if it's already favorited
     const updated = exists
-      ? favorites.filter((fav) => fav.id !== movie.id)
-      : [...favorites, movie];
+      ? favorites.filter((fav) => fav.id !== movie.id) // Remove if exists
+      : [...favorites, movie]; // Add if not
   
     setFavorites(updated);
     localStorage.setItem('favorites', JSON.stringify(updated));

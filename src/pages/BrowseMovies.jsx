@@ -71,7 +71,7 @@ const BrowseMovies = () => {
           value={filters.genre}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 150}}
+          sx={{ minWidth: 150, bgcolor: '#f0f8ff', }}
         >
           <MenuItem value="" >All Genres</MenuItem>
           {genres.map((genre) => (
@@ -88,7 +88,7 @@ const BrowseMovies = () => {
           type="number"
           value={filters.year}
           onChange={handleChange}
-          sx={{ width: 120 }}
+          sx={{ width: 120, bgcolor: '#f0f8ff'}}
         />
 
         {/* Rating Dropdown */}
@@ -97,7 +97,7 @@ const BrowseMovies = () => {
           value={filters.rating}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 150 }}
+          sx={{ minWidth: 150, bgcolor: '#f0f8ff' }}
         >
           <MenuItem value="">All Ratings</MenuItem>
           {[9, 8, 7, 6, 5].map((rating) => (

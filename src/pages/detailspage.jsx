@@ -4,9 +4,9 @@ import { getMovieDetails, getMovieCredits, getMovieVideos } from '../api/api';
 import { Box, Typography, Chip, CircularProgress } from '@mui/material';
 
 const DetailsPage = () => {
-  const { id } = useParams();
-  const [movie, setMovie] = useState(null);
-  const [cast, setCast] = useState([]);
+  const { id } = useParams(); // Get the movie ID from the URL
+  const [movie, setMovie] = useState(null);  // Store movie details
+  const [cast, setCast] = useState([]); // Store cast members
   const [trailerKey, setTrailerKey] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -19,10 +19,11 @@ const DetailsPage = () => {
           getMovieVideos(id)
         ]);
 
-        setMovie(movieData);
+        setMovie(movieData); // Save movie details
         setCast(creditsData.cast.slice(0, 5) || []); // top 5 cast
 
-        const trailer = videosData.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+         // Find the trailer from the videos list
+        const trailer = videosData?.find(video => video.type === 'Trailer' && video.site === 'YouTube');
         setTrailerKey(trailer?.key || '');
       } catch (error) {
         console.error('Error loading movie details:', error);
@@ -34,8 +35,10 @@ const DetailsPage = () => {
     loadDetails();
   }, [id]);
 
-  if (loading) return <CircularProgress />;
-  if (!movie) return <Typography>Movie not found.</Typography>;
+
+  if (loading) return <CircularProgress />;   // Show spinner while loading
+  if (!movie) return <Typography>Movie not found.</Typography>;   // Show message if movie is not found
+
 
 return (
     <Box p={4}>
@@ -84,7 +87,7 @@ return (
         </Box>
 
         {trailerKey && (
-            <Box mt={4}>
+            <Box my={4}>
                 <Typography variant="h5">Trailer</Typography>
                 <iframe
                     width="100%"

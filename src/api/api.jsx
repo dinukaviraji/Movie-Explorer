@@ -47,10 +47,10 @@ export const getMovieDetails = async (id) => {
       const res = await axios.get(`${BASE_URL}/movie/${id}/videos`, {
         params: { api_key: API_KEY },
       });
-      return res.data;
+      return res.data.results;
     } catch (error) {
       console.error('Error fetching trailer:', error);
-      return null;
+      return [];
     }
 
   };

@@ -14,10 +14,12 @@ const MovieGrid = ({ movies, title, favorites, onFavoriteToggle }) => {
           movies.map((movie) => (
             <Grid item key={movie.id}>
               <MovieCard movie={movie} 
-              isFavorited={favorites.some((fav) => fav.id === movie.id)}  onFavoriteToggle={onFavoriteToggle}/>
+              isFavorited={favorites.some((fav) => fav.id === movie.id)}   // Check if movie is favorited
+              onFavoriteToggle={onFavoriteToggle} /> 
             </Grid>
           ))
         ) : (
+          // Message when no movies are available
           <Typography variant="body1" sx={{ p: 2 }}>
             No movies to display.
           </Typography>
