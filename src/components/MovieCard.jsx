@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, Rating, Icon, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
@@ -42,7 +42,7 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
       {isFavorited ? (
           <FavoriteIcon sx={{ color: 'red' }} />
         ) : (
-          <FavoriteTwoToneIcon />
+          <FavoriteBorderIcon sx={{color: 'white'}} />
         )}
 
       </IconButton>

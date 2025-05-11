@@ -25,7 +25,7 @@ const DetailsPage = () => {
         const trailer = videosData.find(video => video.type === 'Trailer' && video.site === 'YouTube');
         setTrailerKey(trailer?.key || '');
       } catch (error) {
-        console.error('Error loading movie details:', err);
+        console.error('Error loading movie details:', error);
       } finally {
         setLoading(false);
       }
