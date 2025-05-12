@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, CardMedia, CardContent, Typography, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -16,8 +15,16 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
         cursor: 'pointer',
         position: 'relative',
         '&:hover': { boxShadow: 6 },
+      }} 
+      onClick={(e) => {
+        if (e.ctrlKey || e.metaKey) {
+          // Open in new tab if Ctrl or Command key is pressed
+          window.open(`/movie/${movie.id}`, '_blank');
+        } else {
+          // Otherwise, navigate to the movie details page
+          navigate(`/movie/${movie.id}`);
+        }
       }}
-      onClick={() => navigate(`/movie/${movie.id}`)} // Go to details page when card is clicked
     >
       {/* Movie poster */}
       <CardMedia
@@ -41,7 +48,8 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
         </Typography>
       </CardContent>
 
-      <IconButton onClick={() => onFavoriteToggle(movie)} sx={{ position: 'absolute', top: 5, right: 5 }}>
+      <IconButton onClick={(e) => {e.stopPropagation(); onFavoriteToggle(movie);}} 
+      sx={{ position: 'absolute', top: 5, right: 5 }}>
       {isFavorited ? (
           <FavoriteIcon sx={{ color: 'red' }} />
         ) : (

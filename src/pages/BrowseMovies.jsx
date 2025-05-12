@@ -108,7 +108,7 @@ const BrowseMovies = () => {
         </Select>
 
         {/* Search Button */}
-        <Button variant="contained" onClick={handleSearch}>
+        <Button variant="contained" onClick={handleSearch} >
           Search
         </Button>
       </Box>
