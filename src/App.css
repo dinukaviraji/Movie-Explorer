@@ -1,7 +1,15 @@
 body, html {
   margin: 0;
   padding: 0;
-
-
+  font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
+@font-face {
+  font-family: "brown-sugar";
+  src: url('./assets/fonts/brown-sugar.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GODOFWAR';
+  src: url('./assets/fonts/GODOFWAR.TTF') format('truetype');
+}

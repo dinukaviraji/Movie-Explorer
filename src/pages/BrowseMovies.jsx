@@ -60,7 +60,7 @@ const BrowseMovies = () => {
 
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>  
-      <Typography variant="h4" gutterBottom mt={7}>Browse Movies</Typography>
+      <Typography variant="h5" gutterBottom sx={{mt:5, mb:2, fontFamily: 'monospace', fontWeight:'bold'}}>Browse Movies</Typography>
 
       {/* Filters Section */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3}}>
@@ -71,7 +71,7 @@ const BrowseMovies = () => {
           value={filters.genre}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 150, bgcolor: '#f0f8ff', }}
+          sx={{ minWidth: 150, bgcolor: '#f0f8ff', height: 35 }}
         >
           <MenuItem value="" >All Genres</MenuItem>
           {genres.map((genre) => (
@@ -83,13 +83,27 @@ const BrowseMovies = () => {
 
         {/* Year Input */}
         <TextField
-          name="year"
-          label="Year"
-          type="number"
-          value={filters.year}
-          onChange={handleChange}
-          sx={{ width: 120, bgcolor: '#f0f8ff'}}
-        />
+        name="year"
+        label="Year"
+        type="number"
+        value={filters.year}
+        onChange={handleChange}
+        sx={{
+          width: 120,
+          bgcolor: '#f0f8ff',
+          '& .MuiInputBase-root': {
+            height: 35,
+            fontSize: '0.9rem',},
+          '& .MuiInputLabel-root': {
+            top: -6,
+            fontSize: '0.75rem',
+          },
+          '& .MuiInputLabel-shrink': {
+            top: 0,
+          }
+  }}
+/>
+
 
         {/* Rating Dropdown */}
         <Select
@@ -97,7 +111,7 @@ const BrowseMovies = () => {
           value={filters.rating}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 150, bgcolor: '#f0f8ff' }}
+          sx={{ minWidth: 150, bgcolor: '#f0f8ff', height: 35 }}
         >
           <MenuItem value="">All Ratings</MenuItem>
           {[9, 8, 7, 6, 5].map((rating) => (
@@ -108,7 +122,7 @@ const BrowseMovies = () => {
         </Select>
 
         {/* Search Button */}
-        <Button variant="contained" onClick={handleSearch} >
+        <Button variant="contained" onClick={handleSearch} sx={{height:35, width:150}}>
           Search
         </Button>
       </Box>

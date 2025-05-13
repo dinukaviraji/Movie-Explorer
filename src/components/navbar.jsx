@@ -47,7 +47,7 @@ return (
             boxShadow: show ? undefined : 'none',
         }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center' }} >
+                <Typography variant="h4" component="div" sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', fontFamily: 'GODOFWAR'}} >
                     <img src={logo} alt="Logo" style={{ width: 42, height: 42, marginRight: 8 }} />
                     PopCorn
                 </Typography>

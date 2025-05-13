@@ -1,6 +1,6 @@
 import './App.css'
 import { useState, useEffect } from 'react';
-import Homepage from './pages/homepage';
+import Homepage from './Pages/homepage';
 import DetailsPage from './pages/detailspage';
 import BrowseMovies from './pages/BrowseMovies';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -25,7 +25,7 @@ function App() {
           minHeight: '100vh',
           background: isDarkMode
             ? 'linear-gradient(to right, #0C134F, #03001C)'
-            : 'linear-gradient(to right, #7393B3, #87CEEB)',
+            : 'linear-gradient(to right, #7393B3, #D8BFD8)',
           color: isDarkMode ? '#fff' : '#000',
         }}
       >

@@ -24,7 +24,7 @@ const FavoriteMovies = () => {
 
   return (
     <Box sx={{ px: 3, py: 6 }}>
-      <Typography variant="h5" mb={2} align='center'>Your Favorite Movies</Typography>
+      <Typography variant="h5" mb={2} align='center' sx={{fontFamily:'monospace'}}>Your Favorite Movies</Typography>
       <MovieGrid
         movies={favorites}
         onFavoriteToggle={toggleFavorite}

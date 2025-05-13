@@ -44,7 +44,8 @@ const Homepage = () => {
   return (
     <Box sx={{ px: 3, py: 4 }}>
         <HeroSection/>
-        <Typography variant="h5" my={2}>Trending Movies</Typography>
+        <Typography variant="h5" sx={{my: 2, fontFamily: 'monospace', fontWeight: 'bold'}}>
+          Trending Movies</Typography>
         <MovieGrid
         movies={movies}
         onMovieClick={(movie) => console.log('Clicked:', movie)}

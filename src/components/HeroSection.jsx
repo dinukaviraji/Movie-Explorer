@@ -71,10 +71,17 @@ return (
             onChange={(e) => setSearchTerm(e.target.value)}
             sx={{
                     backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                    borderRadius: '8px',
+                    borderRadius: '100px', 
                     width: '60%',
                     maxWidth: '600px',
+                    border: 'none',
+                    '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            border: 'none',
+                        }
+                    }
                 }}
+                
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
