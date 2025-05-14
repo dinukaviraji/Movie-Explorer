@@ -1,12 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Typography, Select, MenuItem, TextField, Button, CircularProgress} from '@mui/material';
+import { useEffect, useState } from 'react';
+import { Box, Typography, Select, MenuItem, TextField, Button, CircularProgress, IconButton, InputAdornment} from '@mui/material';
 import MovieGrid from '../components/MovieGrid';
-import { getGenres, getPopularMovies, discoverMovies } from '../api/api';
+import { getGenres, getPopularMovies, discoverMovies, searchMovieByName } from '../api/api';
+import { useNavigate } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
 
 const BrowseMovies = () => {
   const [genres, setGenres] = useState([]);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const navigate = useNavigate();
+
+    const searchMovies = async () => {
+
+      const results = await searchMovieByName(searchTerm);
+      if (results.length > 0) {
+          console.log('Search results:', results);
+          const firstMovieId = results[0].id;
+          console.log('First match ID:', firstMovieId);
+          navigate(`/movie/${firstMovieId}`);
+ 
+      } else {
+          console.log('No movies found!');
+      }
+    };
 
   const [filters, setFilters] = useState({
     genre: '',
@@ -59,11 +78,45 @@ const BrowseMovies = () => {
   };
 
   return (
+
     <Box sx={{ p: { xs: 2, md: 4 } }}>  
-      <Typography variant="h5" gutterBottom sx={{mt:5, mb:2, fontFamily: 'monospace', fontWeight:'bold'}}>Browse Movies</Typography>
+      <Typography variant="h5" gutterBottom sx={{mt:5, mb:2, fontFamily: 'monospace', fontWeight:'bold'}}>
+        Browse Movies</Typography>
+
+      <Box sx={{ mb: 3, flex: 1, display: 'flex', justifyContent: 'center' }}>
+        {/* Search Input */}
+        <TextField
+          placeholder="Search for a movie..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          sx={{
+            backgroundColor: '#f0f8ff',
+            width: '80%',
+            '& .MuiInputBase-root': {
+              height: 35,
+              fontSize: '0.9rem',
+            },
+            border: 'none',
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                  border: 'none',}
+            },
+           
+          }}
+          InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={searchMovies}>
+                    <SearchIcon/>
+                  </IconButton>
+                </InputAdornment> 
+              ),
+          }}/>
+
+      </Box>
 
       {/* Filters Section */}
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3}}>
+      <Box sx={{  display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2, mb: 3}}>
 
         {/* Genre Dropdown */}
         <Select
@@ -125,6 +178,7 @@ const BrowseMovies = () => {
         <Button variant="contained" onClick={handleSearch} sx={{height:35, width:150}}>
           Search
         </Button>
+
       </Box>
 
       {/* Movie Results Grid */}

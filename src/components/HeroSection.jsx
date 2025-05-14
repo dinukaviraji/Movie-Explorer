@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Box, Typography, TextField, IconButton, InputAdornment } from '@mui/material';
-import { getTrendingMovies } from '../api/api'; 
+import { getTrendingMovies, searchMovieByName } from '../api/api'; 
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
-import { searchMovieByName } from '../api/api';
 
 const HeroSection = () => {
   const [movies, setMovies] = useState([]);
@@ -65,7 +64,6 @@ return (
         
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
         <TextField
-            variant="outlined"
             placeholder="Search for a movie..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, IconButton, Typography, Button } from '@mui/material';
 import MovieGrid from '../components/MovieGrid';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 
 const FavoriteMovies = () => {
   const [favorites, setFavorites] = useState([]);
@@ -23,14 +25,24 @@ const FavoriteMovies = () => {
   };
 
   return (
-    <Box sx={{ px: 3, py: 6 }}>
-      <Typography variant="h5" mb={2} align='center' sx={{fontFamily:'monospace'}}>Your Favorite Movies</Typography>
-      <MovieGrid
-        movies={favorites}
-        onFavoriteToggle={toggleFavorite}
-        favorites={favorites}
-      />
-    </Box>
+    favorites.length === 0 ? (
+      <Box sx={{ p:{xs:10, md: 10}, mx:{md: 10}}}>
+      <Box sx={{ backgroundColor: 'rgba(250, 250, 250, 0.2)', borderRadius: 2, height: 200, justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column'}}>
+        <Typography variant="h5" mb={2} align='center' sx={{fontFamily:'monospace', fontWeight: 'bold'}}>No Favorites Yet</Typography>
+        <Typography variant="body1" align='center' sx={{fontFamily:'monospace'}}> You can add movies to your favourites by clicking "Heart Icon".</Typography>
+
+      </Box>
+      </Box>
+    ) : (
+      <Box sx={{ px: 3, py: 6 }}>
+        <Typography variant="h5" mb={2} align='center' sx={{fontFamily:'monospace'}}>Your Favorite Movies</Typography>
+        <MovieGrid
+          movies={favorites}
+          onFavoriteToggle={toggleFavorite}
+          favorites={favorites}
+        />
+      </Box>
+    )
   );
 };
 
