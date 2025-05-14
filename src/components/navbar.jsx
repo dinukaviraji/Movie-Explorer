@@ -3,7 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useState, useEffect } from 'react';
 import LoginModal from './LoginModal';
 import { Link } from 'react-router-dom';
-import logo from '../assets/popcorn.png'
+import logo from '../assets/popcorn.svg'
 
 const Navbar = ({ toggleTheme, isDarkMode }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -48,7 +48,7 @@ return (
         }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography variant="h4" component="div" sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', fontFamily: 'GODOFWAR'}} >
-                    <img src={logo} alt="Logo" style={{ width: 42, height: 42, marginRight: 8 }} />
+                    <img src={logo} alt="Logo" style={{ width: 35, marginRight: 8 }} />
                     PopCorn
                 </Typography>
 

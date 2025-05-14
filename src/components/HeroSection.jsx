@@ -50,7 +50,7 @@ return (
     <Box
         sx={{
             position: 'relative',
-            height: '50vh',
+            height: '55vh',
             backgroundSize: 'cover',
             backgroundImage: `url(https://image.tmdb.org/t/p/original${currentMovie.backdrop_path})`,
             backgroundPosition: 'center',
