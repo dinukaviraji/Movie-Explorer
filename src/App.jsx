@@ -25,7 +25,7 @@ function App() {
           minHeight: '100vh',
           background: isDarkMode
             ? 'linear-gradient(to right, #0C134F, #03001C)'
-            : 'linear-gradient(to right, #7393B3, #D8BFD8)',
+            : 'linear-gradient(to right, #7393B3, #5F9EA0)',
           color: isDarkMode ? '#fff' : '#000',
         }}
       >

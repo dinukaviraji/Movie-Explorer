@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieDetails, getMovieCredits, getMovieVideos } from '../api/api';
 import { Box, Typography, Chip, CircularProgress } from '@mui/material';
@@ -42,13 +42,23 @@ const DetailsPage = () => {
 
 return (
     <Box p={4}>
+        {/* <Box sx={{ 
+            backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            height: '400px',
+            borderRadius: '10px',
+            position: 'relative'
+        }}>
+
+        </Box> */}
         <Box display="flex" alignItems={'center'} flexDirection={{ xs: 'column', md: 'row' }} gap={4}>
             {movie.poster_path && (
             <Box>
                 <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     alt={movie.title}
-                    style={{ width: '400px', borderRadius: '10px' }}
+                    style={{ width: '250px', borderRadius: '10px' }}
                 />
             </Box>
             )}

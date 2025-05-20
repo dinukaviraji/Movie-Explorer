@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Box, IconButton, Typography, Button } from '@mui/material';
 import MovieGrid from '../components/MovieGrid';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-
 
 const FavoriteMovies = () => {
   const [favorites, setFavorites] = useState([]);
