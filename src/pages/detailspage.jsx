@@ -42,16 +42,45 @@ const DetailsPage = () => {
 
 return (
     <Box p={4}>
-        {/* <Box sx={{ 
+        <Box sx={{ position: 'relative', width: '100%', height: '500px', borderRadius: '10px', overflow: 'hidden'}}>
+           
+            <Box sx={{ 
             backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            height: '400px',
+            width: '100%',
+            height: '500px',
             borderRadius: '10px',
-            position: 'relative'
-        }}>
+            backgroundSize: 'cover',
+            position: 'relative',
+            zIndex: 1,
+            }}> 
 
-        </Box> */}
+                <Box sx={{padding:4}}>
+                <Typography sx={{fontSize: {xs: 'h4.fontSize', md:'h3.fontSize'}}}>{movie.title}</Typography>
+                
+                <Box display={'flex'} gap={1} >
+                    <Typography variant="body2"> {movie.genres.map(genre => genre.name).join(', ')}</Typography> 
+                    <Typography variant="body2"> | </Typography>
+                    <Typography variant="body2">{movie.release_date?.substring(0,4)}</Typography>
+                </Box>
+
+                <Typography variant="body1" mt={2} width={{xs:'100%', md: '40%'}} >{movie.overview}</Typography>
+                </Box>
+
+            
+            </Box>
+            <Box sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                background: `linear-gradient(to top, rgba(250, 250, 250, 0.8), transparent 70%)`,
+                zIndex: 2,
+            }} />
+        </Box>
+        
         <Box display="flex" alignItems={'center'} flexDirection={{ xs: 'column', md: 'row' }} gap={4}>
             {movie.poster_path && (
             <Box>

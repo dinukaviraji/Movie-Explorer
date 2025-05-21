@@ -89,6 +89,10 @@ const BrowseMovies = () => {
           placeholder="Search for a movie..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {searchMovies();}}}
+
           sx={{
             backgroundColor: '#f0f8ff',
             width: '80%',

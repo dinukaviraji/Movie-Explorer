@@ -67,6 +67,11 @@ return (
             placeholder="Search for a movie..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+
+            onKeyDown = {(e) => {
+                if (e.key === 'Enter') {
+                    searchMovies(); }
+            }}
             sx={{
                     backgroundColor: 'rgba(255, 255, 255, 0.9)',
                     borderRadius: '100px', 
