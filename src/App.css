@@ -13,3 +13,8 @@ body, html {
   font-family: 'GODOFWAR';
   src: url('./assets/fonts/GODOFWAR.TTF') format('truetype');
 }
+
+@font-face {
+  font-family: 'Vogue';
+  src: url(./assets/fonts/Vogue.ttf) format('truetype');
+}
