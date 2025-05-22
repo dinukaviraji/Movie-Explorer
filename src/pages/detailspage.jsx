@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieDetails, getMovieCredits, getMovieVideos } from '../api/api';
+import { getMovieDetails, getMovieCredits, getMovieVideos, getPosters } from '../api/api';
 import { Box, Typography, Chip, CircularProgress, Button } from '@mui/material';
 
 const DetailsPage = () => {
@@ -9,18 +9,21 @@ const DetailsPage = () => {
   const [cast, setCast] = useState([]); // Store cast members
   const [trailerKey, setTrailerKey] = useState('');
   const [loading, setLoading] = useState(true);
+    const [poster, setPosters] = useState([]); // Store posters
 
   useEffect(() => {
     const loadDetails = async () => {
       try {
-        const [movieData, creditsData, videosData] = await Promise.all([
+        const [movieData, creditsData, videosData, posters] = await Promise.all([
           getMovieDetails(id),
           getMovieCredits(id),
-          getMovieVideos(id)
+          getMovieVideos(id),
+          getPosters(id),
         ]);
 
         setMovie(movieData); // Save movie details
         setCast(creditsData.cast.slice(0, 5) || []); // top 5 cast
+        setPosters(posters);
 
          // Find the trailer from the videos list
         const trailer = videosData?.find(video => video.type === 'Trailer' && video.site === 'YouTube');
@@ -34,6 +37,10 @@ const DetailsPage = () => {
 
     loadDetails();
   }, [id]);
+
+    // useEffect(() => {
+    //     const 
+    // });
 
 
   if (loading) return <CircularProgress />;   // Show spinner while loading
@@ -51,7 +58,6 @@ return (
             width: '100%',
             height: '500px',
             borderRadius: '10px',
-            backgroundSize: 'cover',
             // position: 'relative',
             zIndex: 1,
             }}> 
@@ -62,16 +68,51 @@ return (
                     <Typography variant="body2" gap={2}> ⭐ {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).join(', ')} | {movie.release_date?.substring(0,4)}
                     </Typography>
                 </Box>
-                <Typography variant="body1" my={2} width={{xs:'100%', md: '50%',}} >{movie.overview}</Typography>
+                <Typography variant="body1" my={2} width={{xs:'100%', md: '45%',}} >{movie.overview}</Typography>
                 <Button sx={{backgroundColor:'#0C134F', zIndex:3, color:'whitesmoke', px:4, py:1 ,fontSize:'overline.fontSize',boxShadow: '0px 2px 5px rgba(0,0,0,0.3)'}} onClick={() => window.open(`https://www.youtube.com/embed/${trailerKey}`,'_blank')}> 
                     TRAILER </Button>
                 </Box>
     
-                <Box sx={{px:4, py:1, position: 'absolute', top: {xs:'50%', md:'40%'}, left: {xs:'1%', md:'60%'}}}>
+                <Box sx={{px:4, py:1, position: 'absolute', top: {xs:'50%', md:'40%'}, left: {xs:'1%', md:'55%'}, width: { xs: '90%', md: '35%' },}}>
                     <Typography variant='h6'> Posters </Typography>
-                </Box>
+                
             
+                <Box
+                    sx={{
+                        display: 'flex',
+                        overflowX: 'auto',
+                        scrollSnapType: 'x mandatory',
+                        gap: 2,
+                        px: 2,
+                        // '&::-webkit-scrollbar': { display: 'none' },
+                        zIndex:10,
+                    }}
+                    >
+                    {poster.map(poster => (
+                        <Box
+                        key={poster.file_path}
+                        sx={{
+                            flex: '0 0 auto',
+                            scrollSnapAlign: 'start',
+                            width: 100,
+                            height: 150,
+                            borderRadius: 2,
+                            overflow: 'hidden',
+                        }}
+                        >
+                        <img
+                            src={`https://image.tmdb.org/t/p/w500${poster.file_path}`}
+                            alt="poster"
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                        </Box>
+                    ))}
+                    </Box>
+                    </Box>
+
             </Box>
+
+
             <Box sx={{
                 position: 'absolute',
                 top: 0,

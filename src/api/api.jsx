@@ -55,6 +55,19 @@ export const getMovieDetails = async (id) => {
 
   };
 
+  export const getPosters = async (id) => {
+    try {
+      const res = await axios.get(`${BASE_URL}/movie/${id}/images`, {
+        params: { api_key: API_KEY },
+      });
+      return res.data.posters;
+      
+    } catch (error) {
+      console.error('Error fetching posters:', error);
+      return [];
+    }
+  };
+
 // Get genres list
 export const getGenres = async () => {
   const res = await axios.get(`${BASE_URL}/genre/movie/list`, {
