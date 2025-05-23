@@ -87,17 +87,18 @@ return (
                 </Box>
                 <Typography variant="body1" mt={2} width={{xs:'100%', md: '45%'}}> {visibleOverview} </Typography>
 
-                <Button sx={{backgroundColor:'#0C134F', zIndex:3, color:'whitesmoke', px:4, py:1, my:2,fontSize:'overline.fontSize',boxShadow: '0px 2px 5px rgba(0,0,0,0.3)'}} onClick={() => window.open(`https://www.youtube.com/embed/${trailerKey}`,'_blank')}> 
+                <Button sx={{backgroundColor:'#0C134F', zIndex:3, color:'whitesmoke', px:4, py:1, my:2,fontSize:'overline.fontSize',boxShadow: '0px 2px 5px rgba(0,0,0,0.3)'}} 
+                onClick={() => window.open(`https://www.youtube.com/embed/${trailerKey}`,'_blank')}> 
                     TRAILER </Button>
                 </Box>
                          
                 <Box
                     sx={{
                         position: 'absolute',
-                        top: {xs:'50%', md:'40%'},
-                        left:{xs:'1%', md:'55%'},
+                        top: "40%",
+                        left:'55%',
                         right: 0,
-                        display: 'flex',
+                        display: {xs:'none', md:'flex'},
                         overflowX: 'auto',
                         scrollSnapType: 'x mandatory',
                         gap: 2,
@@ -126,7 +127,7 @@ return (
                         />
                         </Box>
                     ))}
-                    </Box>
+                </Box>
                     
 
             </Box>
