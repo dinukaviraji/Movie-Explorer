@@ -55,15 +55,15 @@ export const getMovieDetails = async (id) => {
 
   };
 
-  export const getPosters = async (id) => {
+  export const getBackdrops = async (id) => {
     try {
       const res = await axios.get(`${BASE_URL}/movie/${id}/images`, {
         params: { api_key: API_KEY },
       });
-      return res.data.posters;
+      return res.data.backdrops;
       
     } catch (error) {
-      console.error('Error fetching posters:', error);
+      console.error('Error fetching images:', error);
       return [];
     }
   };
