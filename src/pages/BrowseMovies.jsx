@@ -128,7 +128,7 @@ const BrowseMovies = () => {
           value={filters.genre}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 150, bgcolor: '#f0f8ff', height: 35 }}
+          sx={{ minWidth: 100, bgcolor: '#f0f8ff', height: 35 }}
         >
           <MenuItem value="" >All Genres</MenuItem>
           {genres.map((genre) => (
@@ -146,7 +146,7 @@ const BrowseMovies = () => {
         value={filters.year}
         onChange={handleChange}
         sx={{
-          width: 120,
+          width: 100,
           bgcolor: '#f0f8ff',
           '& .MuiInputBase-root': {
             height: 35,
@@ -161,19 +161,18 @@ const BrowseMovies = () => {
   }}
 />
 
-
         {/* Rating Dropdown */}
         <Select
           name="rating"
           value={filters.rating}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 150, bgcolor: '#f0f8ff', height: 35 }}
+          sx={{ minWidth: 100, bgcolor: '#f0f8ff', height: 35 }}
         >
           <MenuItem value="">All Ratings</MenuItem>
           {[9, 8, 7, 6, 5].map((rating) => (
             <MenuItem key={rating} value={rating}>
-              {`>= ${rating}`}
+              {`${rating}+ stars`}
             </MenuItem>
           ))}
         </Select>
