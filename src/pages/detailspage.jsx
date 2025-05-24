@@ -152,14 +152,14 @@ return (
                         alt={actor.name}
                         style={{ width: 70, height:70,borderRadius: '50%', objectFit: 'cover'}}
                     />
-                    <Typography variant='body2' sx={{textAlign:'center', lineHeight:1, color:'#353a3e'}}>
+                    <Typography sx={{textAlign:'center', lineHeight:1, color:'#353a3e',  fontSize:'0.75rem'}}>
                         {actor.name.split(' ')[0]}
                         <br />
                         {actor.name.split(' ')[1]}
                     </Typography>
 
                     </Box>
-                ))}
+                    ))}
 
                     <Button
                     onClick={handleOpen}
@@ -169,20 +169,14 @@ return (
                         borderRadius: '50%',
                         textTransform: 'none',
                         fontSize: '0.75rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
                         backgroundColor:'#ccc',
                         color:'black'
                     }}
                     >
                     View All
                     </Button>
-                </Box>
-                    
-                </Box>
-                    
-
+                </Box>                   
+                </Box>             
             </Box>
 
             <Box sx={{
@@ -196,7 +190,9 @@ return (
             }} />
         </Box>
 
+
            {/* images horizontal carousel for small screens */}
+        <Typography sx={{display:{xs:'flex', md:'none'}, mt:2}}> Posters </Typography>
         <Box sx={{position: 'relative', display: {xs:'flex', md:'none'},  overflowX: 'auto',
                 scrollSnapType: 'x mandatory', gap: 2, p: 2, '&::-webkit-scrollbar': { display: 'none' } }}
             >
@@ -211,6 +207,46 @@ return (
                 </Box>
             ))}
         </Box>
+
+        <Typography sx={{display:{xs:'flex', md:'none'}, my:2}}> Cast </Typography>
+        <Box sx={{    
+                  gap:2,
+                  display:{xs:'flex', md:'none'},
+                  }}>
+                    {cast.slice(0, 3).filter((actor) => actor.profile_path)
+                    .map(actor => (
+                    <Box key={actor.id} >
+                    <img
+                    src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}` }
+                        alt={actor.name}
+                        style={{ width: 60, height:60,borderRadius: '50%', objectFit: 'cover'}}
+                    />
+                    <Typography sx={{textAlign:'center', lineHeight:1, fontSize:'0.75rem'}}>
+                        {actor.name.split(' ')[0]}
+                        <br />
+                        {actor.name.split(' ')[1]}
+                    </Typography>
+
+                    </Box>
+                    ))}
+
+                    <Button
+                    onClick={handleOpen}
+                    sx={{
+                        width: 60,
+                        height: 60,
+                        borderRadius: '50%',
+                        textTransform: 'none',
+                        fontSize: '0.75rem',
+                        backgroundColor:'#ccc',
+                        color:'black'
+                    }}
+                    >
+                    View All
+                    </Button>
+                </Box>                   
+
+
               {/* Modal for show expanded images */}
             <Modal
                 open={open} onClose={() => setOpen(false)} closeAfterTransition
@@ -247,19 +283,20 @@ return (
             Cast of {movie.title}
           </Typography>
 
-          <Grid container spacing={3}>
+          <Grid container spacing={{xs:5,md:3}}>
             {cast
               .filter((actor) => actor.profile_path) // Filter out actor don't have images
               .map((actor) => (
               <Grid item xs={6} sm={4} md={3} lg={2} key={actor.id}>
                 <Box textAlign="center">
-                  <img
+                  <Box
+                    component='img'
                     src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}`}
                     alt={actor.name}
-                    style={{ width: 110, borderRadius: 8, objectFit: 'cover', }}
+                    sx={{ width:{xs:60 ,md:110}, borderRadius: 2, objectFit: 'cover', }}
                   />
                   
-                  <Typography variant="body2" mt={1} color='white'>
+                  <Typography sx={{ mt:1, color:'white', fontSize:{xs:'0.75rem', md:'0.875rem'}}}>
                     {actor.name.split(' ').slice(0,2).join(' ')} </Typography>
                 </Box>
               </Grid>

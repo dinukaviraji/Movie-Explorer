@@ -47,7 +47,7 @@ return (
             boxShadow: show ? undefined : 'none',
         }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', fontFamily: 'GODOFWAR'}} >
+                <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', display: {xs:'none',md:'flex'}, alignItems: 'center', fontFamily: 'GODOFWAR'}} >
                     <img src={logo} alt="Logo" style={{ width: 30, marginRight: 8 }} />
                     PopCorn
                 </Typography>
@@ -60,11 +60,10 @@ return (
                     ))}
                 </Box>
 
-                {/* Right-side Buttons */}
-                <Box sx={{ display: 'flex', gap: 1 }}>
+                
                 {/* Mobile Menu Button */}
                 <IconButton
-                    edge="end"
+                    edge="start"
                     color="inherit"
                     aria-label="menu"
                     sx={{ display: { xs: 'flex', md: 'none' } }}
@@ -73,6 +72,14 @@ return (
                     <MenuIcon />
                 </IconButton>
 
+                {/* Logo in mobile screens */}
+                <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', display: {xs:'flex',md:'none'}, alignItems: 'center',justifyContent:'center' , fontFamily: 'GODOFWAR'}} >
+                    <img src={logo} alt="Logo" style={{ width: 25, marginRight: 8 }} />
+                    PopCorn
+                </Typography>
+
+                {/* Right-side Buttons */}
+                <Box sx={{ display: 'flex', gap: 1 }}>
                 <Switch checked={isDarkMode} onChange={toggleTheme} />
 
                 <Button color="inherit" sx={{ fontWeight: 'bold' }} onClick={() => setLoginOpen(true)}>
@@ -84,7 +91,7 @@ return (
 
         {/* Drawer for Mobile */}
         <Drawer
-            anchor="right"
+            anchor="left"
             open={drawerOpen}
             onClose={toggleDrawer(false)}
             sx={{ display: { md: 'none' } }}

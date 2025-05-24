@@ -7,11 +7,12 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 350,
+  width: {xs:315,md:350},
   bgcolor: 'background.paper',
   borderRadius: 2,
   boxShadow: 24,
-  p: 4,
+  px: 4,
+  py: 1,
 };
 
 const LoginModal = ({ open, onClose }) => {
@@ -56,9 +57,16 @@ return (
                     Log in to continue
                 </Typography>
                 <TextField label="Email" fullWidth margin="normal" value={email}
-                    onChange={(e) => setEmail(e.target.value)}/>
+                    onChange={(e) => setEmail(e.target.value)} 
+                     // These styles for change the default textfield styles 
+                    sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, '& input': {padding:'8px 12px'}}, 
+                          '& .MuiInputLabel-root': {fontSize:14, top:-7}, '& .MuiInputLabel-shrink': {top:-1}}}/>
+
                 <TextField label="Password" type="password" fullWidth margin="normal" value={password}
-                    onChange={(e) => setPassword(e.target.value)}/>
+                    onChange={(e) => setPassword(e.target.value)} 
+                    sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, '& input': {padding:'8px 12px'}}, 
+                          '& .MuiInputLabel-root': {fontSize:14, top:-7}, '& .MuiInputLabel-shrink': {top:-1}}}/>
+
                 <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white'}} onClick={handleLogin}>
                     Log In
                 </Button>

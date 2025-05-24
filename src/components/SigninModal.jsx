@@ -6,11 +6,12 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 350,
+  width: 320,
   bgcolor: 'background.paper',
   borderRadius: 2,
   boxShadow: 24,
-  p: 4,
+  px: 4,
+  py: 1,
 };
 
 const SigninModal = ({ open, onClose }) => {
@@ -63,6 +64,10 @@ const SigninModal = ({ open, onClose }) => {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
+            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, 
+              '& input': {padding:'8px 12px'}}, 
+              '& .MuiInputLabel-root': {fontSize:14, top:-7},
+             '& .MuiInputLabel-shrink': {top:-1}}}
           />
           <TextField
             label="Second Name"
@@ -71,6 +76,10 @@ const SigninModal = ({ open, onClose }) => {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
+            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, 
+              '& input': {padding:'8px 12px'}}, 
+              '& .MuiInputLabel-root': {fontSize:14, top:-7},
+             '& .MuiInputLabel-shrink': {top:-1}}}
           />
           <TextField
             label="Email"
@@ -79,6 +88,10 @@ const SigninModal = ({ open, onClose }) => {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, 
+              '& input': {padding:'8px 12px'}}, 
+              '& .MuiInputLabel-root': {fontSize:14, top:-7},
+             '& .MuiInputLabel-shrink': {top:-1}}}
           />
           <TextField
             label="Password"
@@ -88,6 +101,10 @@ const SigninModal = ({ open, onClose }) => {
             name="password"
             value={formData.password}
             onChange={handleChange}
+            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, 
+              '& input': {padding:'8px 12px'}}, 
+              '& .MuiInputLabel-root': {fontSize:14, top:-7},
+             '& .MuiInputLabel-shrink': {top:-1}}}
           />
           <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white' }} onClick={handleSubmit}>
             Sign Up
