@@ -1,5 +1,3 @@
-// src/components/LoginModal.jsx
-import React from 'react';
 import { Modal, Box, Typography, TextField, Button, Snackbar, Alert } from '@mui/material';
 import SigninModal from './SigninModal';
 import { useState } from 'react';
@@ -61,11 +59,13 @@ return (
                     onChange={(e) => setEmail(e.target.value)}/>
                 <TextField label="Password" type="password" fullWidth margin="normal" value={password}
                     onChange={(e) => setPassword(e.target.value)}/>
-                <Button variant="contained" fullWidth sx={{ my: 2 }} onClick={handleLogin}>
+                <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white'}} onClick={handleLogin}>
                     Log In
                 </Button>
-                <Typography> Don't have an account? <Button onClick={() => {setSigninOpen(true); onClose();} } > 
-                    Sign Up</Button> </Typography>
+                <Typography> Don't have an account? 
+                  <Button onClick={() => {setSigninOpen(true); onClose();}} sx={{color:'#1e69b5',background:'none'}} > 
+                    Sign Up</Button> 
+                </Typography>
             </Box>
         </Modal>
 

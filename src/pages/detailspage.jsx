@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieDetails, getMovieCredits, getMovieVideos, getBackdrops } from '../api/api';
-import { Box, Typography, Chip, CircularProgress, Button } from '@mui/material';
+import { Box, Typography, CircularProgress, Button, Modal, Grid} from '@mui/material';
 // import star from '../assets/star.png';
 
 const DetailsPage = () => {
@@ -11,9 +11,15 @@ const DetailsPage = () => {
   const [cast, setCast] = useState([]); // Store cast members
   const [trailerKey, setTrailerKey] = useState('');
   const [loading, setLoading] = useState(true);
-    const [backdrop, setBackdrops] = useState([]); // Store backdrops
+  const [backdrop, setBackdrops] = useState([]); // Store backdrops
 
-    const [visibleOverview, setVisibleText] = useState('');
+  const [open, setOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+
+  const [openCast, setOpenCast] = useState(false);
+  const handleOpen = () => setOpenCast(true);
+  const handleClose = () => setOpenCast(false);
+
 
   useEffect(() => {
     const loadDetails = async () => {
@@ -27,7 +33,7 @@ const DetailsPage = () => {
         ]);
 
         setMovie(movieData); // Save movie details
-        setCast(creditsData.cast.slice(0, 5) || []); // top 5 cast
+        setCast(Array.isArray(creditsData.cast) ? creditsData.cast : []); 
         setBackdrops(backdrops);
 
          // Find the trailer from the videos list
@@ -43,22 +49,6 @@ const DetailsPage = () => {
     loadDetails();
   }, [id]);
 
-    useEffect(() => {
-        if (!movie?.overview) return; // skip until overview exists
-        
-        let text = movie.overview;
-        const sentences = text.split('. ');
-        let visible = '';
-        let sentenceCount = sentences.length > 2 ? 2 : sentences.length; // Show 3 sentences or less if there are fewer than 3
-
-        for (let i = 0; i < sentenceCount; i++) {
-            visible += sentences[i] + '. ';
-        }
-        setVisibleText(visible.trim());
-
-    }, [movie]);
-
-
   if (loading) return <CircularProgress />;   // Show spinner while loading
   if (!movie) return <Typography>Movie not found.</Typography>;   // Show message if movie is not found
 
@@ -72,36 +62,41 @@ return (
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             width: '100%',
-            height:  { xs: '500px', md: '100vh' },
+            height:  { xs: '500px', md: '100vh' }, 
             borderRadius: '10px',
             // position: 'relative',
             zIndex: 1,
             }}> 
 
-                <Box sx={{px:4, py:1, position:'absolute', top: {xs:'1%', md:'40%'}}}>
-                <Typography sx={{fontSize: {xs: 'h4.fontSize', md:'h3.fontSize'}, fontFamily:'Vogue'}}>{movie.title}</Typography>      
+                <Box sx={{px:4, py:1, position:'absolute', top: {xs:'1%', md:'45%'}}}>
+                <Typography sx={{fontSize: {xs: 'h4.fontSize', md:'h3.fontSize'}, fontFamily:'Vogue', color:'white'}}>{movie.title}</Typography>      
                 <Box>
-                    <Typography variant="body2" gap={2}> ⭐ {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).join(', ')} | {movie.release_date?.substring(0,4)}
+                    <Typography variant="body2" gap={2}  color='white'> ⭐ {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).join(', ')} | {movie.release_date?.substring(0,4)}
                     </Typography>
             
                 </Box>
-                <Typography variant="body1" mt={2} width={{xs:'100%', md: '45%'}}> {visibleOverview} </Typography>
+                <Typography variant="body1" mt={2} width={{xs:'100%', md: '45%'}} color='white'> 
+                  {movie.overview.split('. ').slice(0,2).join('. ')}. </Typography>
 
-                <Button sx={{backgroundColor:'#0C134F', zIndex:3, color:'whitesmoke', px:4, py:1, my:2,fontSize:'overline.fontSize',boxShadow: '0px 2px 5px rgba(0,0,0,0.3)'}} 
+                <Button sx={{backgroundColor:'#0C134F', zIndex:3, color:'whitesmoke', px:4, py:1, mt:3,fontSize:'overline.fontSize',boxShadow: '0px 2px 5px rgba(0,0,0,0.3)'}} 
                 onClick={() => window.open(`https://www.youtube.com/embed/${trailerKey}`,'_blank')}> 
                     TRAILER </Button>
                 </Box>
-                         
-                <Box
+
+
+                <Typography sx={{position: 'absolute', top:'50%', left:'55%',display:{xs:'none', md:'flex'}, color:'white'}}> 
+                        Posters </Typography>
+                    {/* Image horizontal carousel for medium/ large screens */}
+                <Box                   
                     sx={{
                         position: 'absolute',
-                        top: "40%",
+                        top: "55%",
                         left:'55%',
                         right: 0,
                         display: {xs:'none', md:'flex'},
                         overflowX: 'auto',
                         scrollSnapType: 'x mandatory',
-                        gap: 2,
+                        gap: 1,
                         px: 2,
                         
                         '&::-webkit-scrollbar': { display: 'none' },
@@ -120,18 +115,75 @@ return (
                             overflow: 'hidden',
                         }}
                         >
-                        <img
+                        <img 
                             src={`https://image.tmdb.org/t/p/w500${img.file_path}`}
                             alt="backdeop"
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer'}}
+                            onClick={(e) => {
+                                 if (e.ctrlKey || e.metaKey) {
+                                    // Open in new tab if Ctrl or Command key is pressed
+                                    window.open(`https://image.tmdb.org/t/p/w1280${img.file_path}`, '_blank');
+                                    } else {
+                                        setSelectedImage(`https://image.tmdb.org/t/p/w1280${img.file_path}`);
+                                        setOpen(true);}}
+                                     }
                         />
                         </Box>
                     ))}
                 </Box>
+
+                <Box>
+                    <Typography sx={{position: 'absolute', top:'75%', left:'55%',display:{xs:'none', md:'flex'}, color:'white'}}> 
+                        Cast </Typography>
+                    <Box sx={{
+                        position: 'absolute', 
+                        top:'80%', 
+                        left:'55%', 
+                        gap:1,
+                        display:{xs:'none', md:'flex'},
+                        zIndex:3,
+                        }}>
+
+                    {cast.slice(0, 4).filter((actor) => actor.profile_path)
+                    .map(actor => (
+                    <Box key={actor.id} >
+                    <img
+                    src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}` }
+                        alt={actor.name}
+                        style={{ width: 70, height:70,borderRadius: '50%', objectFit: 'cover'}}
+                    />
+                    <Typography variant='body2' sx={{textAlign:'center', lineHeight:1, color:'#353a3e'}}>
+                        {actor.name.split(' ')[0]}
+                        <br />
+                        {actor.name.split(' ')[1]}
+                    </Typography>
+
+                    </Box>
+                ))}
+
+                    <Button
+                    onClick={handleOpen}
+                    sx={{
+                        width: 70,
+                        height: 70,
+                        borderRadius: '50%',
+                        textTransform: 'none',
+                        fontSize: '0.75rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor:'#ccc',
+                        color:'black'
+                    }}
+                    >
+                    View All
+                    </Button>
+                </Box>
+                    
+                </Box>
                     
 
             </Box>
-
 
             <Box sx={{
                 position: 'absolute',
@@ -143,63 +195,79 @@ return (
                 zIndex: 2,
             }} />
         </Box>
-        
-        <Box display="flex" alignItems={'center'} flexDirection={{ xs: 'column', md: 'row' }} gap={4}>
-            {movie.poster_path && (
-            <Box>
+
+           {/* images horizontal carousel for small screens */}
+        <Box sx={{position: 'relative', display: {xs:'flex', md:'none'},  overflowX: 'auto',
+                scrollSnapType: 'x mandatory', gap: 2, p: 2, '&::-webkit-scrollbar': { display: 'none' } }}
+            >
+            {backdrop.map((img) => (
+                <Box
+                key={img.file_path}
+                sx={{flex: '0 0 auto', scrollSnapAlign: 'start', width: 150, height: 90, borderRadius: 2, overflow: 'hidden'}}>
                 <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                    style={{ width: '250px', borderRadius: '10px' }}
-                />
-            </Box>
-            )}
-            <Box>
-                <Typography variant="h3">{movie.title}</Typography>
-                <Typography variant="subtitle1" >{movie.release_date}</Typography>
-
-                <Box my={2} >
-                    {movie.genres.map(genre => (
-                        <Chip key={genre.id} label={genre.name} sx={{ mr: 1, color:"#1F51FF"}} />
-                    ))}
+                    src={`https://image.tmdb.org/t/p/w500${img.file_path}`}
+                    alt="backdeop"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </Box>
-
-                <Typography variant="body1" mt={2} >{movie.overview}</Typography>
-            </Box>
+            ))}
         </Box>
-
-        <Box mt={4}>
-            <Typography variant="h5" >Cast</Typography>
-            <Box display="flex" gap={2} mt={1} flexWrap="wrap">
-                {cast.map(actor => (
-                <Box key={actor.id} textAlign="center">
-                    <img
-                    src={
-                        actor.profile_path
-                            ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
-                            : 'https://via.placeholder.com/100x150?text=No+Image'
-                        }
-                        alt={actor.name}
-                        style={{ width: 100, borderRadius: 8 }}
-                />
-                    <Typography>{actor.name}</Typography>
+              {/* Modal for show expanded images */}
+            <Modal
+                open={open} onClose={() => setOpen(false)} closeAfterTransition
+                sx={{ backdropFilter: 'blur(5px)',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+                >
+                <Box
+                sx={{ outline: 'none', maxWidth: '70%', maxHeight: '70%', borderRadius: 2,overflow: 'hidden', boxShadow: 24}}
+                >
+                <img src={selectedImage} alt="expanded" style={{ width: '100%', height: 'auto', objectFit: 'contain' }}/>
                 </Box>
-                ))}
-            </Box>
-        </Box>
+            </Modal>
 
-        {trailerKey && (
-            <Box my={4}>
-                <Typography variant="h5">Trailer</Typography>
-                <iframe
-                    width="100%"
-                    height="400"
-                    src={`https://www.youtube.com/embed/${trailerKey}`}
-                    title="Trailer"
-                    allowFullScreen
-                />
-            </Box>
-        )}
+            {/* Modal to Show Full Cast */}
+      <Modal
+        open={openCast}
+        onClose={handleClose}
+        sx={{ overflowY: 'auto' }}
+      >
+        <Box
+          sx={{
+            // bgcolor: 'background.paper',
+            backdropFilter: 'blur(90px)',
+            margin: '5% auto',
+            padding: 4,
+            width: '70%',
+            maxHeight: '80vh',
+            borderRadius: 2,
+            boxShadow: 24,
+            overflow: 'auto',
+            '&::-webkit-scrollbar': { display: 'none' },
+          }}
+        >
+          <Typography variant="h6" sx={{display:'flex', justifyContent:'center', color:'white',mb:2}}>
+            Cast of {movie.title}
+          </Typography>
+
+          <Grid container spacing={3}>
+            {cast
+              .filter((actor) => actor.profile_path) // Filter out actor don't have images
+              .map((actor) => (
+              <Grid item xs={6} sm={4} md={3} lg={2} key={actor.id}>
+                <Box textAlign="center">
+                  <img
+                    src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}`}
+                    alt={actor.name}
+                    style={{ width: 110, borderRadius: 8, objectFit: 'cover', }}
+                  />
+                  
+                  <Typography variant="body2" mt={1} color='white'>
+                    {actor.name.split(' ').slice(0,2).join(' ')} </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Modal>
+
     </Box>
 );
 };

@@ -89,7 +89,7 @@ const SigninModal = ({ open, onClose }) => {
             value={formData.password}
             onChange={handleChange}
           />
-          <Button variant="contained" fullWidth sx={{ my: 2 }} onClick={handleSubmit}>
+          <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white' }} onClick={handleSubmit}>
             Sign Up
           </Button>
         </Box>
