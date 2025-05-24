@@ -80,7 +80,7 @@ const BrowseMovies = () => {
   return (
 
     <Box sx={{ p: { xs: 2, md: 4 } }}>  
-      <Typography variant="h5" gutterBottom sx={{mt:5, mb:2, fontFamily: 'monospace', fontWeight:'bold'}}>
+      <Typography variant="h5" gutterBottom sx={{mt:5, mb:2, fontFamily: 'ClashGrotesk'}}>
         Browse Movies</Typography>
 
       <Box sx={{ mb: 3, flex: 1, display: 'flex', justifyContent: 'center' }}>
@@ -94,6 +94,7 @@ const BrowseMovies = () => {
             if (e.key === 'Enter') {searchMovies();}}}
 
           sx={{
+            borderRadius: 5,
             backgroundColor: '#f0f8ff',
             width: '80%',
             '& .MuiInputBase-root': {

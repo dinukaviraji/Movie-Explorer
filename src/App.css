@@ -4,10 +4,6 @@ body, html {
   font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
-@font-face {
-  font-family: "brown-sugar";
-  src: url('./assets/fonts/brown-sugar.ttf') format('truetype');
-}
 
 @font-face {
   font-family: 'GODOFWAR';
@@ -17,4 +13,9 @@ body, html {
 @font-face {
   font-family: 'Vogue';
   src: url(./assets/fonts/Vogue.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'ClashGrotesk';
+  src: url(./assets/fonts/ClashGrotesk.ttf) format('truetype');
 }
