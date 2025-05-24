@@ -267,7 +267,6 @@ return (
       >
         <Box
           sx={{
-            // bgcolor: 'background.paper',
             backdropFilter: 'blur(90px)',
             margin: '5% auto',
             padding: 4,

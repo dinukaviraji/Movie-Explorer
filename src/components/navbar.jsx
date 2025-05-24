@@ -94,12 +94,17 @@ return (
             anchor="left"
             open={drawerOpen}
             onClose={toggleDrawer(false)}
-            sx={{ display: { md: 'none' } }}
+            sx={{ display: { md: 'none' },
+                  '& .MuiDrawer-paper': {
+                    background:'linear-gradient(to right, #0C134F, #03001C)',
+                    height: 400,
+                  }
+            }}
         >
             <List sx={{ width: 200 }}>
                 {navLinks.map((text) => (
                     <ListItem button key={text} onClick={toggleDrawer(false)}>
-                        <ListItemText primary={<Typography sx={{ fontWeight: 'bold' }} component={Link} to={getPath(text)}>{text}</Typography>} />
+                        <ListItemText primary={<Typography sx={{color:'wheat', textDecoration: 'none'}} component={Link} to={getPath(text)} > {text}</Typography>} />
                     </ListItem>
                 ))}
             </List>
