@@ -2,7 +2,7 @@ import { AppBar, Toolbar, IconButton, Typography, Button, Drawer, List, ListItem
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState, useEffect } from 'react';
 import LoginModal from './LoginModal';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import logo from '../assets/popcorn.svg'
 
 const Navbar = ({ toggleTheme, isDarkMode }) => {
@@ -10,6 +10,7 @@ const Navbar = ({ toggleTheme, isDarkMode }) => {
     const [show, setShow] = useState(false);
 
     const [loginOpen, setLoginOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,7 +48,7 @@ return (
             boxShadow: show ? undefined : 'none',
         }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', display: {xs:'none',md:'flex'}, alignItems: 'center', fontFamily: 'GODOFWAR'}} >
+                <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', display: {xs:'none',md:'flex'}, alignItems: 'center', fontFamily: 'GODOFWAR', cursor:"pointer"}} onClick={() => {navigate('/')}}>
                     <img src={logo} alt="Logo" style={{ width: 30, marginRight: 8 }} />
                     PopCorn
                 </Typography>
@@ -82,7 +83,7 @@ return (
                 <Box sx={{ display: 'flex', gap: 1 }}>
                 <Switch checked={isDarkMode} onChange={toggleTheme} />
 
-                <Button color="inherit" sx={{ fontWeight: 'bold' }} onClick={() => setLoginOpen(true)}>
+                <Button color="inherit" sx={{ fontWeight: 'bold', textTransform:'none' }} onClick={() => setLoginOpen(true)}>
                     Login</Button>
                 </Box>
 

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieDetails, getMovieCredits, getMovieVideos, getBackdrops } from '../api/api';
-import { Box, Typography, CircularProgress, Button, Modal, Grid} from '@mui/material';
+import { Box, Typography, Button, Modal, Grid} from '@mui/material';
 // import star from '../assets/star.png';
 
 const DetailsPage = () => {
@@ -49,7 +49,6 @@ const DetailsPage = () => {
     loadDetails();
   }, [id]);
 
-  if (loading) return <CircularProgress />;   // Show spinner while loading
   if (!movie) return <Typography>Movie not found.</Typography>;   // Show message if movie is not found
 
 
