@@ -43,7 +43,7 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
         <Typography variant="subtitle1" noWrap>
           {movie.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" sx={{color:"text.secondary"}}>
           {movie.release_date?.substring(0, 4)} • ⭐ {movie.vote_average?.toFixed(1)}
         </Typography>
       </CardContent>
@@ -58,6 +58,7 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
 
       </IconButton>
     </Card>
+
   );
 };
 
