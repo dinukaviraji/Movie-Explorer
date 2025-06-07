@@ -74,7 +74,7 @@ return (
                 </IconButton>
 
                 {/* Logo in mobile screens */}
-                <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', display: {xs:'flex',md:'none'}, alignItems: 'center',justifyContent:'center' , fontFamily: 'GODOFWAR'}} >
+                <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', display: {xs:'flex',md:'none'}, alignItems: 'center',justifyContent:'center' , fontFamily: 'GODOFWAR'}} onClick={() => {navigate('/')}}>
                     <img src={logo} alt="Logo" style={{ width: 25, marginRight: 8 }} />
                     PopCorn
                 </Typography>

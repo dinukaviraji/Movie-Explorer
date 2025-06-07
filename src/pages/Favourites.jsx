@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Box, IconButton, Typography, Button } from '@mui/material';
+import { Box, Typography} from '@mui/material';
 import MovieGrid from '../components/MovieGrid';
 
 const FavoriteMovies = () => {
