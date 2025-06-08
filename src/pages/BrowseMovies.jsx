@@ -121,7 +121,7 @@ const BrowseMovies = () => {
       </Box>
 
       {/* Filters Section */}
-      <Box sx={{  display: 'flex', flexWrap: 'wrap', justifyContent: {xs:'left', md:'center'}, gap: 2, mb: 3}}>
+      <Box sx={{  display: 'flex', flexWrap: 'wrap', justifyContent: {xs:'left', md:'center'}, gap:{xs:1, md: 2}, mb: 3}}>
 
         {/* Genre Dropdown */}
         <Select

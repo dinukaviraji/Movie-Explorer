@@ -42,7 +42,7 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
       />
       {/* Movie title and release info */}
       <CardContent sx={{padding: 1}}>
-        <Typography variant="body1" noWrap sx={{ fontWeight: 'bold', fontFamily:'Inter'}}>
+        <Typography noWrap sx={{ fontWeight: 'bold', fontFamily:'Sora', fontSize: { xs: '0.75rem', md: '0.87rem' } }}>
           {movie.title}
         </Typography>
         <Typography variant="body2" sx={{color:"text.secondary"}}>

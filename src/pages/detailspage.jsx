@@ -53,7 +53,7 @@ const DetailsPage = () => {
 
 
 return (
-    <Box sx={{p: 4, }}>
+    <Box p={4}>
         <Box sx={{ position: 'relative', width: '100%', height: { xs: '500px', md: '100vh' }, borderRadius: '10px', overflow: 'hidden', mt:3}}>
            
             <Box sx={{ 
@@ -78,7 +78,8 @@ return (
                 <Typography variant="body1" mt={2} width={{xs:'100%', md: '45%'}} color='white'> 
                   {movie.overview.split('. ').slice(0,2).join('. ')}. </Typography>
 
-                <Button sx={{backgroundColor:'#0C134F', zIndex:3, color:'whitesmoke', px:4, py:1, mt:3,fontSize:'overline.fontSize',boxShadow: '0px 2px 5px rgba(0,0,0,0.3)'}} 
+                <Button sx={{backgroundColor:'#0C134F', zIndex:3, color:'whitesmoke', px:4, py:1, mt:3,fontSize:'overline.fontSize',boxShadow: '0px 2px 5px rgba(0,0,0,0.3)', 
+                '&:hover': { boxShadow: '0px 4px 10px rgba(0,0,0,0.4)'}}} 
                 onClick={() => window.open(`https://www.youtube.com/embed/${trailerKey}`,'_blank')}> 
                     TRAILER </Button>
                 </Box>
