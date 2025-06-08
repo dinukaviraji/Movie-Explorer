@@ -30,7 +30,7 @@ function App() {
         }}
       >
         <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: {xs:1, md:2} }}>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/movie/:id" element={<DetailsPage />} />

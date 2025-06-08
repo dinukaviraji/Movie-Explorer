@@ -57,12 +57,13 @@ return (
             flexDirection: 'column',
             justifyContent: 'space-between',
             color: '#fff',
-            px: 4,
-            py: 6,
+            px: {xs:2, md:4},
+            py: 4,
+            mt: 2
         }}
     >
         
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 20}}>
         <TextField
             placeholder="Search for a movie..."
             value={searchTerm}
