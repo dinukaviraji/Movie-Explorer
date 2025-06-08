@@ -75,7 +75,7 @@ return (
             sx={{
                     backgroundColor: 'rgba(255, 255, 255, 0.9)',
                     borderRadius: '100px', 
-                    width: '60%',
+                    width: {xs:'95%' , md:'60%'},
                     maxWidth: '600px',
                     border: 'none',
                     '& .MuiOutlinedInput-root': {

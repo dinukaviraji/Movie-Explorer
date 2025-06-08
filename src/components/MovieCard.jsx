@@ -10,6 +10,8 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
   return (
     <Card
       sx={{
+        height:{ xs: 260, sm: 350, md: 360 },
+        width: { xs: 130, sm: 180, md: 200 },
         maxWidth: 200,
         m: 1,
         cursor: 'pointer',
@@ -29,7 +31,7 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
       {/* Movie poster */}
       <CardMedia
         component="img"
-        height="300"
+        sx={{ height: { xs: 200, md: 300 } }}
         image={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
@@ -39,12 +41,12 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
         
       />
       {/* Movie title and release info */}
-      <CardContent>
-        <Typography variant="subtitle1" noWrap>
+      <CardContent sx={{padding: 1}}>
+        <Typography variant="body1" noWrap sx={{ fontWeight: 'bold'}}>
           {movie.title}
         </Typography>
         <Typography variant="body2" sx={{color:"text.secondary"}}>
-          {movie.release_date?.substring(0, 4)} • ⭐ {movie.vote_average?.toFixed(1)}
+          {movie.release_date?.substring(0, 4)}  • ⭐ {movie.vote_average?.toFixed(1)}
         </Typography>
       </CardContent>
 
