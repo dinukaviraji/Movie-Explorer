@@ -59,7 +59,7 @@ return (
             color: '#fff',
             px: {xs:2, md:4},
             py: 4,
-            mt: 2
+            mt: 3
         }}
     >
         

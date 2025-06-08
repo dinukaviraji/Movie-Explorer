@@ -53,8 +53,8 @@ const DetailsPage = () => {
 
 
 return (
-    <Box p={4}>
-        <Box sx={{ position: 'relative', width: '100%', height: { xs: '500px', md: '100vh' }, borderRadius: '10px', overflow: 'hidden'}}>
+    <Box sx={{p: 4, }}>
+        <Box sx={{ position: 'relative', width: '100%', height: { xs: '500px', md: '100vh' }, borderRadius: '10px', overflow: 'hidden', mt:3}}>
            
             <Box sx={{ 
             backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
@@ -65,6 +65,7 @@ return (
             borderRadius: '10px',
             // position: 'relative',
             zIndex: 1,
+    
             }}> 
 
                 <Box sx={{px:4, py:1, position:'absolute', top: {xs:'1%', md:'45%'}}}>

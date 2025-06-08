@@ -80,7 +80,7 @@ const BrowseMovies = () => {
   return (
 
     <Box sx={{ p: { xs: 2, md: 4 } }}>  
-      <Typography variant="h5" gutterBottom sx={{mt:5, mb:2, fontFamily: 'ClashGrotesk'}}>
+      <Typography variant="h5"  sx={{mt:5, mb:2, fontFamily: 'ClashGrotesk',display: 'flex', justifyContent:{ xs: 'center', md: 'left' }}} >
         Browse Movies</Typography>
 
       <Box sx={{ mb: 3, flex: 1, display: 'flex', justifyContent: 'center' }}>
@@ -121,7 +121,7 @@ const BrowseMovies = () => {
       </Box>
 
       {/* Filters Section */}
-      <Box sx={{  display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 2, mb: 3}}>
+      <Box sx={{  display: 'flex', flexWrap: 'wrap', justifyContent: {xs:'left', md:'center'}, gap: 2, mb: 3}}>
 
         {/* Genre Dropdown */}
         <Select
@@ -178,12 +178,16 @@ const BrowseMovies = () => {
           ))}
         </Select>
 
-        {/* Search Button */}
-        <Button variant="contained" onClick={handleSearch} sx={{height:35, width:150}}>
+        {/* Search Button for laptop screens */}
+        <Button variant="contained" onClick={handleSearch} sx={{height:35, width:150, display:{ xs: 'none', md: 'flex' }}}>
           Search
         </Button>
-
       </Box>
+
+      {/* Search Button for mobile screens */}
+      <Button variant="contained" onClick={handleSearch} sx={{height:35, width:300, display:{ xs: 'flex', md: 'none' }, justifyContent: 'center', mx: 'auto'}}>
+          Search
+        </Button>
 
       {/* Movie Results Grid */}
       {loading ? (
