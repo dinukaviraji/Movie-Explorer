@@ -14,7 +14,15 @@ const DetailsPage = () => {
   const [backdrop, setBackdrops] = useState([]); // Store backdrops
 
   const [open, setOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const selectedImage = backdrop[selectedImageIndex] ? `https://image.tmdb.org/t/p/w1280${backdrop[selectedImageIndex].file_path}` : '';
+  const handlePrevImage = () => {
+    setSelectedImageIndex((index) => (index > 0 ? index - 1 : index));
+  };
+
+  const handleNextImage = () => {
+    setSelectedImageIndex((index) => (index < backdrop.length - 1 ? index + 1 : index));
+  };
 
   const [openCast, setOpenCast] = useState(false);
   const handleOpen = () => setOpenCast(true);
@@ -104,7 +112,7 @@ return (
                         zIndex:10,
                     }}
                     >
-                    {backdrop.map((img) => (
+                    {backdrop.map((img, index) => (
                         <Box
                         key={img.file_path}
                         sx={{
@@ -125,7 +133,7 @@ return (
                                     // Open in new tab if Ctrl or Command key is pressed
                                     window.open(`https://image.tmdb.org/t/p/w1280${img.file_path}`, '_blank');
                                     } else {
-                                        setSelectedImage(`https://image.tmdb.org/t/p/w1280${img.file_path}`);
+                                        setSelectedImageIndex(index);
                                         setOpen(true);}}
                                      }
                         />
@@ -197,7 +205,7 @@ return (
         <Box sx={{position: 'relative', display: {xs:'flex', md:'none'},  overflowX: 'auto',
                 scrollSnapType: 'x mandatory', gap: 2, p: 2, '&::-webkit-scrollbar': { display: 'none' } }}
             >
-            {backdrop.map((img) => (
+            {backdrop.map((img, index) => (
                 <Box
                 key={img.file_path}
                 sx={{flex: '0 0 auto', scrollSnapAlign: 'start', width: 150, height: 90, borderRadius: 2, overflow: 'hidden'}}>
@@ -205,7 +213,7 @@ return (
                     src={`https://image.tmdb.org/t/p/w500${img.file_path}`}
                     alt="backdeop"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    onClick={() => { setSelectedImage(`https://image.tmdb.org/t/p/w1280${img.file_path}`);
+                    onClick={() => { setSelectedImageIndex(index);
                                      setOpen(true);}} />
                 </Box>
             ))}
@@ -256,12 +264,19 @@ return (
           sx={{ backdropFilter: 'blur(5px)',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}
           >
           <Box
-          sx={{ outline: 'none', maxWidth:{xs:'90%', md:'70%'}, maxHeight:{xs:'90%', md:'70%'}, borderRadius: 2,overflow: 'hidden', boxShadow: 24, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <IconButton> <Typography sx={{color: 'white', fontSize:{xs:'0.5rem', md:'2rem'},borderRadius: '50%', padding:{xs:'0.05rem 0.5rem', md:'0.05rem 0.8rem'}, backgroundColor: 'rgba(255,255,255, 0.3)'}}> 
-            {'<'} </Typography> </IconButton>
-          <img src={selectedImage} alt="expanded" style={{ width:'90%', height: 'auto', objectFit: 'contain' }}/>
-          <IconButton><Typography sx={{color: 'white', fontSize:{xs:'0.5rem', md:'2rem'},borderRadius: '50%', padding:{xs:'0.05rem 0.5rem', md:'0.05rem 0.8rem'}, backgroundColor: 'rgba(255,255,255, 0.3)'}}> 
-            {'>'} </Typography> </IconButton>
+          sx={{ outline: 'none', maxWidth:{xs:'90%', md:'70%'}, maxHeight:{xs:'90%', md:'70%'}, borderRadius: 2,overflow: 'hidden', boxShadow: 24, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>        
+            <IconButton> 
+              <Typography sx={{color: 'white', fontSize:{xs:'1rem', md:'2rem'},borderRadius: '50%', padding:{xs:'0.05rem 0.5rem', md:'0.05rem 0.8rem'}, 
+              backgroundColor: 'rgba(255,255,255, 0.3)'}} onClick={handlePrevImage}> 
+              {'<'} </Typography> 
+            </IconButton>
+
+            <Box component='img' src={selectedImage} alt="expanded" sx={{ width:{xs:'80%',md:'90%'}, height: 'auto', objectFit: 'contain' }}/>
+            
+            <IconButton><Typography sx={{color: 'white', fontSize:{xs:'1rem', md:'2rem'},borderRadius: '50%', padding:{xs:'0.05rem 0.5rem', md:'0.05rem 0.8rem'}, 
+            backgroundColor: 'rgba(255,255,255, 0.3)'}} onClick={handleNextImage}> 
+              {'>'} </Typography> 
+              </IconButton>
 
           </Box>
       </Modal>
