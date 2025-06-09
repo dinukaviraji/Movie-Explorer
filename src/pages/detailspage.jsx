@@ -76,7 +76,7 @@ return (
     
             }}> 
 
-                <Box sx={{px:4, py:1, position:'absolute', top: {xs:'1%', md:'45%'}}}>
+                <Box sx={{px:{xs:1, md:4}, py:1, position:'absolute', top: {xs:'1%', md:'50%'}}}>
                 <Typography sx={{fontSize: {xs: 'h4.fontSize', md:'h3.fontSize'}, fontFamily:'Vogue', color:'white'}}>{movie.title}</Typography>      
                 <Box>
                     <Typography variant="body2" gap={2}  color='white'> ⭐ {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).join(', ')} | {movie.release_date?.substring(0,4)}
@@ -300,15 +300,15 @@ return (
             '&::-webkit-scrollbar': { display: 'none' },
           }}
         >
-          <Typography variant="h6" sx={{display:'flex', justifyContent:'center', color:'white',mb:2}}>
+          <Typography  sx={{display:'flex', justifyContent:'center', color:'white',mb:2, fontFamily:'Sora', fontSize:{xs:'1rem', md:'1.5rem'} , textDecoration:'underline', textUnderlineOffset: '0.3rem'}}>
             Cast of {movie.title}
           </Typography>
 
-          <Grid container spacing={{xs:5,md:3}}>
+          <Grid container spacing={{xs:2,md:3}}>
             {cast
               .filter((actor) => actor.profile_path) // Filter out actor don't have images
               .map((actor) => (
-              <Grid item xs={6} sm={4} md={3} lg={2} key={actor.id}>
+              <Grid item key={actor.id}>
                 <Box textAlign="center">
                   <Box
                     component='img'
@@ -316,9 +316,11 @@ return (
                     alt={actor.name}
                     sx={{ width:{xs:60 ,md:110}, borderRadius: 2, objectFit: 'cover', }}
                   />
-                  
-                  <Typography sx={{ mt:1, color:'white', fontSize:{xs:'0.75rem', md:'0.875rem'}}}>
-                    {actor.name.split(' ').slice(0,2).join(' ')} </Typography>
+                  {/* check if the actor's name is too long. If it too long display second name in a new line */}
+                  <Typography sx={{ mt:1, color:'white', fontSize:{xs:'0.7rem', md:'0.875rem'}, fontFamily:'Sora',}}>  
+                    {actor.name.split(' ').slice(0,2).join(' ').length > 10 ?                                          
+                    <> {actor.name.split(' ')[0]} <br/> {actor.name.split(' ')[1]} </> : actor.name.split(' ').slice(0,2).join(' ')} 
+                  </Typography>
                 </Box>
               </Grid>
             ))}

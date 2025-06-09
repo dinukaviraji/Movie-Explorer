@@ -44,7 +44,7 @@ const Homepage = () => {
   return (
     <Box sx={{ px: 3, py: 4 }}>
         <HeroSection/>
-        <Typography variant="h5" sx={{my: 2, fontFamily: 'ClashGrotesk'}}>
+        <Typography sx={{my: 3, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.2rem', md: '1.6rem' }}}>
           Trending Movies</Typography>
         <MovieGrid
         movies={movies}
