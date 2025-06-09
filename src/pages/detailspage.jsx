@@ -8,6 +8,7 @@ import { Box, Typography, Button, Modal, Grid, IconButton} from '@mui/material';
 const DetailsPage = () => {
   const { id } = useParams(); // Get the movie ID from the URL
 
+  const [loading, setLoading] = useState(true); // Loading state
   const [movie, setMovie] = useState(null);  // Store movie details
   const [cast, setCast] = useState([]); // Store cast members
   const [trailerKey, setTrailerKey] = useState('');
@@ -57,8 +58,7 @@ const DetailsPage = () => {
     loadDetails();
   }, [id]);
 
-  if (!movie) return <Typography>Movie not found.</Typography>;   // Show message if movie is not found
-
+  if (loading) return null;  
 
 return (
     <Box p={4}>

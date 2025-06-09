@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CssBaseline, Box } from '@mui/material';
 import Navbar from './components/navbar';
 import FavoriteMovies from './pages/Favourites';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -30,14 +31,15 @@ function App() {
         }}
       >
         <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-        <Box sx={{ p:{xs:1, md:2} }}>
+        <Box sx={{ py:{xs:1, md:2}, px:{md:3} }}>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/movie/:id" element={<DetailsPage />} />
         <Route path="/browse-movies" element={<BrowseMovies />} />
         <Route path="/favorites" element={<FavoriteMovies />} />
-      </Routes>
+      </Routes>      
       </Box>
+        <Footer/>
       </Box>
 
     </Router>

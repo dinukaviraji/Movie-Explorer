@@ -147,7 +147,7 @@ const BrowseMovies = () => {
         value={filters.year}
         onChange={handleChange}
         sx={{
-          width:{ xs:70, md: 180 },
+          width:{ xs:80, md: 180 },
           bgcolor: '#f0f8ff',
           '& .MuiInputBase-root': {
             height: 35,
@@ -168,7 +168,7 @@ const BrowseMovies = () => {
           value={filters.rating}
           onChange={handleChange}
           displayEmpty
-          sx={{bgcolor: '#f0f8ff', height: 35, width: {xs: 140, md: 180}}}
+          sx={{bgcolor: '#f0f8ff', height: 35, width: {xs: 130, md: 180}}}
         >
           <MenuItem value="">All Ratings</MenuItem>
           {[9, 8, 7, 6, 5].map((rating) => (
