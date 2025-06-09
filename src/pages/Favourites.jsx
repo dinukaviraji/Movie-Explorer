@@ -26,14 +26,14 @@ const FavoriteMovies = () => {
     favorites.length === 0 ? (
       <Box sx={{ p:{xs:10, md: 10}, mx:{md: 10}, mt: 5}}>
       <Box sx={{ backgroundColor: 'rgba(250, 250, 250, 0.2)', borderRadius: 2, height: 200, justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column'}}>
-        <Typography mb={2} align='center' sx={{fontFamily:'ClashGrotesk', fontSize:{ xs: '1.2rem', md: '1.6rem' }, fontWeight: 'bold'}}>No Favourites Yet</Typography>
+        <Typography mb={2} align='center' sx={{fontFamily:'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, fontWeight: 'bold'}}>No Favourites Yet</Typography>
         <Typography variant="body1" align='center' sx={{fontFamily:'monospace'}}> You can add movies to your favourites by clicking "Heart Icon".</Typography>
 
       </Box>
       </Box>
     ) : (
       <Box sx={{ px: 3, py: 6 }}>
-        <Typography align='center' sx={{fontFamily:'ClashGrotesk', fontSize:{ xs: '1.2rem', md: '1.6rem' }, my:2}}>Your Favourite Movies</Typography>
+        <Typography align='center' sx={{fontFamily:'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, my:2}}>Your Favourite Movies</Typography>
         <MovieGrid
           movies={favorites}
           onFavoriteToggle={toggleFavorite}

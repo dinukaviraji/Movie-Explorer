@@ -1,7 +1,8 @@
-import { Card, CardMedia, CardContent, Typography, IconButton } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, IconButton, Stack} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import StarIcon from '@mui/icons-material/Star';
 
 // This component displays a single movie card
 const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
@@ -45,9 +46,15 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
         <Typography noWrap sx={{ fontWeight: 'bold', fontFamily:'Sora', fontSize: { xs: '0.75rem', md: '0.87rem' } }}>
           {movie.title}
         </Typography>
-        <Typography variant="body2" sx={{color:"text.secondary"}}>
-          {movie.release_date?.substring(0, 4)}  • ⭐ {movie.vote_average?.toFixed(1)}
-        </Typography>
+
+        <Stack direction="row" spacing={0.5} alignItems="center">
+          <Typography variant="body2" sx={{color:"text.secondary"}}>
+            {movie.release_date?.substring(0, 4)}  </Typography>
+            <StarIcon fontSize="small" sx={{ color: 'gold'}}/>
+            <Typography variant="body2" sx={{color:"text.secondary"}}>  
+              {movie.vote_average?.toFixed(1)} </Typography>
+        </Stack>
+
       </CardContent>
 
       <IconButton onClick={(e) => {e.stopPropagation(); onFavoriteToggle(movie);}} 

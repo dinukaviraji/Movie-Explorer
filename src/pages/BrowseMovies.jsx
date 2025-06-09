@@ -80,7 +80,7 @@ const BrowseMovies = () => {
   return (
 
     <Box sx={{ p: { xs: 1, md: 4 } }}>  
-      <Typography sx={{mt:6, mb:2, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.2rem', md: '1.6rem' }, display: 'flex', justifyContent:{ xs: 'center', md: 'left' }}} >
+      <Typography sx={{mt:6, mb:2, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, display: 'flex', justifyContent:{ xs: 'center', md: 'left' }}} >
         Browse Movies</Typography>
 
       <Box sx={{ mb: 3, flex: 1, display: 'flex', justifyContent: 'center' }}>
