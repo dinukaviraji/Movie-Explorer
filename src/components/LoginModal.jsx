@@ -23,6 +23,16 @@ const LoginModal = ({ open, onClose }) => {
 
     const handleLogin = () => {
         const storedUser = JSON.parse(localStorage.getItem('user'));
+
+        // Check if any field is empty
+        if (!email || !password) {
+          setSnackbar({
+            open: true,
+            message: 'Please fill in all fields.',
+            severity: 'error',
+          });
+          return;
+        }
     
         if (!storedUser) {
           setSnackbar({ open: true, message: 'No account found. Please sign up first.', severity: 'warning' });

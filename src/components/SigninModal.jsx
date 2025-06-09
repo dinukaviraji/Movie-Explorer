@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Box, Typography, TextField, Button, Snackbar, Alert } from '@mui/material';
 
 const style = {
@@ -30,6 +30,17 @@ const SigninModal = ({ open, onClose }) => {
   };
 
   const handleSubmit = () => {
+    const { firstName, lastName, email, password } = formData;
+
+  // Check if any field is empty
+  if (!firstName || !lastName || !email || !password) {
+    setSnackbar({
+      open: true,
+      message: 'Please fill in all fields.',
+      severity: 'error',
+    });
+    return;
+  }
     // Save data to localStorage
     localStorage.setItem('user', JSON.stringify(formData));
 
