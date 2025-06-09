@@ -129,7 +129,7 @@ const BrowseMovies = () => {
           value={filters.genre}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 100, bgcolor: '#f0f8ff', height: 35 }}
+          sx={{ minWidth: 80, bgcolor: '#f0f8ff', height: 35, width: {xs: 100, md: 200} }}
         >
           <MenuItem value="" >All Genres</MenuItem>
           {genres.map((genre) => (
@@ -168,7 +168,7 @@ const BrowseMovies = () => {
           value={filters.rating}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 100, bgcolor: '#f0f8ff', height: 35 }}
+          sx={{ minWidth: 100, bgcolor: '#f0f8ff', height: 35, width: {xs: 100, md: 200}}}
         >
           <MenuItem value="">All Ratings</MenuItem>
           {[9, 8, 7, 6, 5].map((rating) => (
