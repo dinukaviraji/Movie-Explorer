@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieDetails, getMovieCredits, getMovieVideos, getBackdrops } from '../api/api';
-import { Box, Typography, Button, Modal, Grid} from '@mui/material';
+import { Box, Typography, Button, Modal, Grid, IconButton} from '@mui/material';
+
 // import star from '../assets/star.png';
 
 const DetailsPage = () => {
@@ -10,7 +11,6 @@ const DetailsPage = () => {
   const [movie, setMovie] = useState(null);  // Store movie details
   const [cast, setCast] = useState([]); // Store cast members
   const [trailerKey, setTrailerKey] = useState('');
-  const [loading, setLoading] = useState(true);
   const [backdrop, setBackdrops] = useState([]); // Store backdrops
 
   const [open, setOpen] = useState(false);
@@ -118,7 +118,7 @@ return (
                         >
                         <img 
                             src={`https://image.tmdb.org/t/p/w500${img.file_path}`}
-                            alt="backdeop"
+                            alt="backdrop"
                             style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer'}}
                             onClick={(e) => {
                                  if (e.ctrlKey || e.metaKey) {
@@ -204,7 +204,9 @@ return (
                 <img
                     src={`https://image.tmdb.org/t/p/w500${img.file_path}`}
                     alt="backdeop"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    onClick={() => { setSelectedImage(`https://image.tmdb.org/t/p/w1280${img.file_path}`);
+                                     setOpen(true);}} />
                 </Box>
             ))}
         </Box>
@@ -248,17 +250,21 @@ return (
                 </Box>                   
 
 
-              {/* Modal for show expanded images */}
-            <Modal
-                open={open} onClose={() => setOpen(false)} closeAfterTransition
-                sx={{ backdropFilter: 'blur(5px)',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}
-                >
-                <Box
-                sx={{ outline: 'none', maxWidth: '70%', maxHeight: '70%', borderRadius: 2,overflow: 'hidden', boxShadow: 24}}
-                >
-                <img src={selectedImage} alt="expanded" style={{ width: '100%', height: 'auto', objectFit: 'contain' }}/>
-                </Box>
-            </Modal>
+        {/* Modal for show expanded images */}
+      <Modal
+          open={open} onClose={() => setOpen(false)} closeAfterTransition
+          sx={{ backdropFilter: 'blur(5px)',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+          >
+          <Box
+          sx={{ outline: 'none', maxWidth: '70%', maxHeight: '70%', borderRadius: 2,overflow: 'hidden', boxShadow: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1}}>
+          <IconButton> <span style={{color: 'white', fontSize:'30px',borderRadius: '50%', padding:'4px 12px', backgroundColor: 'rgba(255,255,255, 0.3)'}}> 
+            {'<'} </span> </IconButton>
+          <img src={selectedImage} alt="expanded" style={{ width: '90%', height: 'auto', objectFit: 'contain' }}/>
+          <IconButton><span style={{color: 'white', fontSize:'30px',borderRadius: '50%', padding:'4px 12px', backgroundColor: 'rgba(255,255,255, 0.3)'}}> 
+            {'>'} </span> </IconButton>
+
+          </Box>
+      </Modal>
 
             {/* Modal to Show Full Cast */}
       <Modal

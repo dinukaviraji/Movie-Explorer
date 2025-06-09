@@ -98,7 +98,7 @@ return (
             />
         </Box>
 
-        <Typography variant="h5" fontWeight="bold">
+        <Typography fontFamily={'DM Serif Display'} fontSize={{ xs: '1.2rem', md: '1.8rem' }}>
             {currentMovie.title}
         </Typography>
     </Box>

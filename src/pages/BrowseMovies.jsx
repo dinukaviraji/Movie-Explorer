@@ -79,7 +79,7 @@ const BrowseMovies = () => {
 
   return (
 
-    <Box sx={{ p: { xs: 2, md: 4 } }}>  
+    <Box sx={{ p: { xs: 1, md: 4 } }}>  
       <Typography variant="h5"  sx={{mt:5, mb:2, fontFamily: 'ClashGrotesk',display: 'flex', justifyContent:{ xs: 'center', md: 'left' }}} >
         Browse Movies</Typography>
 
@@ -129,9 +129,9 @@ const BrowseMovies = () => {
           value={filters.genre}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 80, bgcolor: '#f0f8ff', height: 35, width: {xs: 100, md: 200} }}
+          sx={{ minWidth: 80, bgcolor: '#f0f8ff', height: 35, width: {xs: 120, md: 200} }}
         >
-          <MenuItem value="" >All Genres</MenuItem>
+          <MenuItem value="" sx={{fontSize:{xs:'0.6rem', md:'0.8rem'}}} >All Genres</MenuItem>
           {genres.map((genre) => (
             <MenuItem key={genre.id} value={genre.id}>
               {genre.name}
@@ -168,7 +168,7 @@ const BrowseMovies = () => {
           value={filters.rating}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 100, bgcolor: '#f0f8ff', height: 35, width: {xs: 100, md: 200}}}
+          sx={{bgcolor: '#f0f8ff', height: 35, width: {xs: 120, md: 200}}}
         >
           <MenuItem value="">All Ratings</MenuItem>
           {[9, 8, 7, 6, 5].map((rating) => (
