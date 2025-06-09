@@ -256,12 +256,12 @@ return (
           sx={{ backdropFilter: 'blur(5px)',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}
           >
           <Box
-          sx={{ outline: 'none', maxWidth: '70%', maxHeight: '70%', borderRadius: 2,overflow: 'hidden', boxShadow: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1}}>
-          <IconButton> <span style={{color: 'white', fontSize:'30px',borderRadius: '50%', padding:'4px 12px', backgroundColor: 'rgba(255,255,255, 0.3)'}}> 
-            {'<'} </span> </IconButton>
-          <img src={selectedImage} alt="expanded" style={{ width: '90%', height: 'auto', objectFit: 'contain' }}/>
-          <IconButton><span style={{color: 'white', fontSize:'30px',borderRadius: '50%', padding:'4px 12px', backgroundColor: 'rgba(255,255,255, 0.3)'}}> 
-            {'>'} </span> </IconButton>
+          sx={{ outline: 'none', maxWidth:{xs:'90%', md:'70%'}, maxHeight:{xs:'90%', md:'70%'}, borderRadius: 2,overflow: 'hidden', boxShadow: 24, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <IconButton> <Typography sx={{color: 'white', fontSize:{xs:'0.5rem', md:'2rem'},borderRadius: '50%', padding:{xs:'0.05rem 0.5rem', md:'0.05rem 0.8rem'}, backgroundColor: 'rgba(255,255,255, 0.3)'}}> 
+            {'<'} </Typography> </IconButton>
+          <img src={selectedImage} alt="expanded" style={{ width:'90%', height: 'auto', objectFit: 'contain' }}/>
+          <IconButton><Typography sx={{color: 'white', fontSize:{xs:'0.5rem', md:'2rem'},borderRadius: '50%', padding:{xs:'0.05rem 0.5rem', md:'0.05rem 0.8rem'}, backgroundColor: 'rgba(255,255,255, 0.3)'}}> 
+            {'>'} </Typography> </IconButton>
 
           </Box>
       </Modal>
