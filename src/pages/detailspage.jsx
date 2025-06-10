@@ -81,10 +81,10 @@ return (
        
             <Stack direction="row" spacing={0.5} alignItems="center">
               <StarIcon fontSize="small" sx={{ color: 'gold'}}/>
-              <Typography variant="body2" gap={2} color='white' fontFamily='Sora'> {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).join(', ')} | {movie.release_date?.substring(0,4)}</Typography>
+              <Typography variant="body2" gap={2} color='white'> {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).join(', ')} | {movie.release_date?.substring(0,4)}</Typography>
             </Stack>          
           
-            <Typography variant="body1" mt={2} width={{xs:'100%', md: '50%'}} color='white' fontFamily='Sora'> 
+            <Typography variant="body1" mt={2} width={{xs:'100%', md: '50%'}} color='white' > 
               {movie.overview.split('. ').slice(0,2).join('. ')}
             </Typography>
 
@@ -204,9 +204,9 @@ return (
 
 
            {/* images horizontal carousel for small screens - Outside the background image */}
-        <Typography sx={{display:{xs:'flex', md:'none'}, mt:2}}> Posters </Typography>
+        <Typography sx={{display:{xs:'flex', md:'none'}, mt:2, ml:2}}> Posters </Typography>
         <Box sx={{position: 'relative', display: {xs:'flex', md:'none'},  overflowX: 'auto',
-                scrollSnapType: 'x mandatory', gap: 2, p: 2, '&::-webkit-scrollbar': { display: 'none' } }}>                 
+                scrollSnapType: 'x mandatory', gap: 2, ml:2, '&::-webkit-scrollbar': { display: 'none' } }}>                 
           {backdrop.map((img, index) => (
             <Box
               key={img.file_path}
@@ -223,10 +223,11 @@ return (
         </Box>
 
         {/* Cast section for small screens - Outside the background image*/}
-        <Typography sx={{display:{xs:'flex', md:'none'}, my:2}}> Cast </Typography>
-        <Box 
+        <Typography sx={{display:{xs:'flex', md:'none'}, my:2, ml:2}}> Cast </Typography>
+        <Box
           sx={{    
             gap:2,
+            ml:2,
             display:{xs:'flex', md:'none'},
           }}>
             {cast.slice(0, 3).filter((actor) => actor.profile_path)

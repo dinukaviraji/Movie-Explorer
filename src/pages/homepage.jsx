@@ -7,6 +7,8 @@ import { Button, Box, Typography} from '@mui/material';
 const Homepage = () => {
   const [movies, setMovies] = useState([]);  // Store list of trending movies
   const [page, setPage] = useState(1); // Current page number for pagination
+  const [showLoadMore, setShowLoadMore] = useState(false); // Control visibility of "Load More" button
+  const [showTopic, setshowTopic] = useState(false); // Store favorite movies
 
   // Fetch trending movies 
   const fetchMovies = async () => {
@@ -17,6 +19,12 @@ const Homepage = () => {
 
   useEffect(() => {
     fetchMovies(); // initial load
+   
+    setTimeout(() => {
+      setShowLoadMore(true); // Show "Load More" button after 2 seconds
+      setshowTopic(true); // Show topic after 2 seconds
+    }, 2000); 
+
   }, [page]);
 
   // Load more movies by increasing the page number
@@ -39,29 +47,32 @@ const Homepage = () => {
     setFavorites(updated);
     localStorage.setItem('favorites', JSON.stringify(updated));
   };
-  
 
   return (
     <Box mb={5}>
         <HeroSection/>
-        <Typography sx={{my: 3, mx:5, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, fontWeight: 450}} >
-          Trending Movies</Typography>
+        {showTopic &&
+          <Typography sx={{my: 3, mx:5, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, fontWeight: 450}} >
+            Trending Movies
+          </Typography> 
+        }
         <MovieGrid
         movies={movies}
         onMovieClick={(movie) => console.log('Clicked:', movie)}
         favorites={favorites}
         onFavoriteToggle={toggleFavorite}
         />
-        <Box display="flex" justifyContent="center" mt={3}>
-        <Button 
-          sx={{ backgroundColor: '#007acc', color: 'white', borderRadius: 30, px: 5,
-            '&:hover': { backgroundColor: '#0096FF'}
-          }} 
-          onClick={handleLoadMore}
-        > 
-          Load more 
-        </Button>
-        </Box>
+        { showLoadMore && 
+          <Box display="flex" justifyContent="center" mt={3}>
+            <Button 
+              sx={{ backgroundColor: '#007acc', color: 'white', borderRadius: 30, px: 5,
+                '&:hover': { backgroundColor: '#0096FF'}
+              }} 
+              onClick={handleLoadMore}
+            > 
+              Load more 
+            </Button>
+          </Box>}
     </Box>
   );
 };
