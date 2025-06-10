@@ -1,9 +1,8 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieDetails, getMovieCredits, getMovieVideos, getBackdrops } from '../api/api';
 import { Box, Typography, Button, Modal, Grid, IconButton, Stack} from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
-
 
 const DetailsPage = () => {
   const { id } = useParams(); // Get the movie ID from the URL
@@ -74,14 +73,14 @@ return (
         // position: 'relative',
         zIndex: 1  }}> 
 
-          <Box sx={{px:{xs:2, md:4}, py:{xs:8, md:1}, position:'absolute', top: {xs:'1%', md:'50%'}, justifyContent:{xs:'center'}}}>
-            <Typography sx={{fontSize: {xs: 'h4.fontSize', md:'h3.fontSize'}, fontFamily:'Vogue', color:'white'}}>
+          <Box sx={{px:{xs:2, md:4}, py:{xs:8, md:1}, position:'absolute', top: {xs:'1%', md:'50%'}}}>
+            <Typography sx={{fontSize: {xs: '1.5rem', md:'3rem'}, fontFamily:'Vogue', color:'white'}}>
               {movie.title}
             </Typography>      
        
             <Stack direction="row" spacing={0.5} alignItems="center">
               <StarIcon fontSize="small" sx={{ color: 'gold'}}/>
-              <Typography variant="body2" gap={2} color='white'> {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).join(', ')} | {movie.release_date?.substring(0,4)}</Typography>
+              <Typography variant="body2" gap={2} color='white'> {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).slice(0,3).join(', ')} | {movie.release_date?.substring(0,4)}</Typography>
             </Stack>          
           
             <Typography variant="body1" mt={2} width={{xs:'100%', md: '50%'}} color='white' > 
@@ -93,6 +92,7 @@ return (
             onClick={() => window.open(`https://www.youtube.com/embed/${trailerKey}`,'_blank')}> 
                 TRAILER 
             </Button>
+
           </Box>
 
           <Typography sx={{position: 'absolute', top:'50%', left:'55%',display:{xs:'none', md:'flex'}, color:'white', fontFamily:'Sora'}}> 
@@ -142,54 +142,36 @@ return (
                     ))}
               </Box>
 
-          {/* Cast section for medium/ large screens - Inside the background image */}
+          {/* Cast section for medium screens - Inside the background image */}
           <Box>  
-            <Typography sx={{position: 'absolute', top:'75%', left:'55%',display:{xs:'none', md:'flex'}, color:'white', fontFamily:'Sora'}}> 
+            <Typography sx={{position: 'absolute', top:'73%', left:'55%',display:{xs:'none', md:'flex', xl:'none'}, color:'white', fontFamily:'Sora'}}> 
                 Cast 
-              </Typography>
-
-              <Box 
-                sx={{
-                  position: 'absolute', 
-                  top:'80%', 
-                  left:'55%', 
-                  gap:1,
-                  display:{xs:'none', md:'flex'},
-                  zIndex:3,
-                }}>
-
-                {cast.slice(0, 4).filter((actor) => actor.profile_path)  // Filering out actors without profile images within first 4 actors
-                .map(actor => (
-                  <Box key={actor.id}>
-                    <img
+            </Typography>
+            <Box 
+              sx={{position: 'absolute', top:'78%', left:'55%', gap:1, display:{xs:'none', md:'flex', xl:'none'}, zIndex:3}}>
+              {cast.slice(0, 6).filter((actor) => actor.profile_path)  // Filering out actors without profile images within first 4 actors
+              .map(actor => (
+                <Box key={actor.id}>
+                  <img
                     src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}` }
-                        alt={actor.name}
-                        style={{ width: 70, height:70,borderRadius: '50%', objectFit: 'cover'}}
-                    />
-                    <Typography sx={{textAlign:'center', lineHeight:1, color:'#353a3e',  fontSize:'0.75rem', fontFamily:'Sora'}}>
-                        {actor.name.split(' ')[0]}
-                        <br />
-                        {actor.name.split(' ')[1]}
-                    </Typography>
-                  </Box>
-                ))}
-
-                <Button
-                  onClick={handleOpen}
-                  sx={{
-                    width: 70,
-                    height: 70,
-                    borderRadius: '50%',
-                    textTransform: 'none',
-                    fontSize: '0.75rem',
-                    backgroundColor:'#ccc',
-                    color:'black'
-                  }}>
-                    View All
-                </Button>
+                    alt={actor.name}
+                    style={{ width: 65, height:80, borderRadius: 5, objectFit: 'cover'}}
+                  />
+                  <Typography sx={{textAlign:'center', lineHeight:1, color:'#353a3e',  fontSize:'0.75rem', fontFamily:'Sora'}}>
+                      {actor.name.split(' ')[0]}
+                      <br />
+                      {actor.name.split(' ')[1]}
+                  </Typography>
+                </Box>
+              ))}
+              <Button
+                onClick={handleOpen}
+                sx={{ width: 65, height: 80, borderRadius:5, textTransform: 'none', fontSize: '0.75rem', backgroundColor:'#ccc', color:'black'
+                }}>
+                  View All
+              </Button>
             </Box>    
-          </Box>             
-        </Box>
+          </Box>
 
             <Box sx={{    // Transparent gradient overlay on the background image
                 position: 'absolute',
@@ -200,7 +182,8 @@ return (
                 background: `linear-gradient(to top, rgba(250, 250, 250, 0.6), transparent 70%)`,
                 zIndex: 2,
             }}/>
-      </Box>
+            </Box>
+    </Box>
 
 
            {/* images horizontal carousel for small screens - Outside the background image */}
@@ -228,6 +211,7 @@ return (
           sx={{    
             gap:2,
             ml:2,
+            mb:6,
             display:{xs:'flex', md:'none'},
           }}>
             {cast.slice(0, 3).filter((actor) => actor.profile_path)
@@ -268,7 +252,7 @@ return (
         sx={{ backdropFilter: 'blur(5px)',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}
         >
         <Box
-          sx={{ outline: 'none', maxWidth:{xs:'90%', md:'70%'}, maxHeight:{xs:'90%', md:'70%'}, borderRadius: 2,overflow: 'hidden', boxShadow: 24, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>        
+          sx={{ outline: 'none', maxWidth:{xs:'90%', md:'80%'}, maxHeight:{xs:'90%', md:'80%'}, borderRadius: 2,overflow: 'hidden', boxShadow: 24, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>        
             <IconButton> 
               <Typography sx={{color: 'white', fontSize:{xs:'1rem', md:'2rem'},borderRadius: '50%', padding:{xs:'0.05rem 0.5rem', md:'0.05rem 0.8rem'}, 
                                 backgroundColor: 'rgba(255,255,255, 0.3)'}} onClick={handlePrevImage}> 
@@ -276,7 +260,7 @@ return (
               </Typography> 
             </IconButton>
 
-            <Box component='img' src={selectedImage} alt="expanded" sx={{ width:{xs:'80%',md:'90%'}, height: 'auto', objectFit: 'contain' }}/>
+            <Box component='img' src={selectedImage} alt="expanded" sx={{ width:{xs:'80%', md:'88%', xl:'90%'}, height: 'auto', objectFit: 'contain' }}/>
             
             <IconButton>
               <Typography sx={{color: 'white', fontSize:{xs:'1rem', md:'2rem'},borderRadius: '50%', padding:{xs:'0.05rem 0.5rem', md:'0.05rem 0.8rem'}, 
