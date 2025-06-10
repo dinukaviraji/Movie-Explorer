@@ -80,7 +80,7 @@ const BrowseMovies = () => {
   return (
 
     <Box sx={{ p: { xs: 1, md: 4 } }}>  
-      <Typography sx={{mt:6, mb:2, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, display: 'flex', justifyContent:'center'}} >
+      <Typography sx={{mt:6, mb:2, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, display: {xs:'none', md:'flex'}, justifyContent:'center'}} >
         Browse Movies</Typography>
 
       <Box sx={{ mb: 3, flex: 1, display: 'flex', justifyContent: 'center' }}>
@@ -129,9 +129,9 @@ const BrowseMovies = () => {
           value={filters.genre}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 80, bgcolor: '#f0f8ff', height: 35, width: {xs: '30vw', md: '10vw'} }}
-        >
-          <MenuItem value="" sx={{fontSize:{xs:'0.6rem', md:'0.8rem'}}} >All Genres</MenuItem>
+          sx={{ minWidth: 80, bgcolor: '#f0f8ff', height: 35, width: {xs: '35vw', md: '10vw'} }}
+        >        
+          <MenuItem value="" sx={{fontSize:{xs:'0.6rem', md:'0.8rem'}}}> All </MenuItem>
           {genres.map((genre) => (
             <MenuItem key={genre.id} value={genre.id}>
               {genre.name}
@@ -168,9 +168,9 @@ const BrowseMovies = () => {
           value={filters.rating}
           onChange={handleChange}
           displayEmpty
-          sx={{bgcolor: '#f0f8ff', height: 35, width: {xs: '30vw', md: '10vw'}}}
+          sx={{bgcolor: '#f0f8ff', height: 35, width: {xs: '35vw', md: '10vw'}}}
         >
-          <MenuItem value="">All Ratings</MenuItem>
+          <MenuItem value=""> All </MenuItem>
           {[9, 8, 7, 6, 5].map((rating) => (
             <MenuItem key={rating} value={rating}>
               {`${rating}+ stars`}

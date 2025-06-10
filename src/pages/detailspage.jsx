@@ -74,7 +74,7 @@ return (
         // position: 'relative',
         zIndex: 1  }}> 
 
-          <Box sx={{px:{xs:1, md:4}, py:1, position:'absolute', top: {xs:'1%', md:'50%'}}}>
+          <Box sx={{px:{xs:2, md:4}, py:{xs:8, md:1}, position:'absolute', top: {xs:'1%', md:'50%'}, justifyContent:{xs:'center'}}}>
             <Typography sx={{fontSize: {xs: 'h4.fontSize', md:'h3.fontSize'}, fontFamily:'Vogue', color:'white'}}>
               {movie.title}
             </Typography>      
