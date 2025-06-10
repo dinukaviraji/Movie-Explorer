@@ -59,31 +59,30 @@ return (
             color: '#fff',
             px: {xs:2, md:4},
             py: 4,
-            mt: 3
         }}
     >
         
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 20}}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: '20vh'}}>
         <TextField
             placeholder="Search for a movie..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)}         
 
             onKeyDown = {(e) => {
                 if (e.key === 'Enter') {
                     searchMovies(); }
             }}
             sx={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                    borderRadius: '100px', 
-                    width: {xs:'95%' , md:'60%'},
-                    maxWidth: '600px',
-                    border: 'none',
-                    '& .MuiOutlinedInput-root': {
-                        '& fieldset': {
-                            border: 'none',
-                        }
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                borderRadius: '100px', 
+                width: {xs:'95%' , md:'60%'},
+                maxWidth: '600px',
+                border: 'none',
+                '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                        border: 'none',
                     }
+                }
                 }}
                 
                 InputProps={{
@@ -98,7 +97,7 @@ return (
             />
         </Box>
 
-        <Typography fontFamily={'DM Serif Display'} fontSize={{ xs: '1.5rem', md: '1.8rem' }}>
+        <Typography fontFamily={'DM Serif Display'} fontSize={{ xs: '1.5rem', md: '1.6rem', xl: '2rem' }}>
             {currentMovie.title}
         </Typography>
     </Box>

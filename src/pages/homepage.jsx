@@ -42,9 +42,9 @@ const Homepage = () => {
   
 
   return (
-    <Box sx={{ px: {md:3}, py: 4 }}>
+    <Box mb={5}>
         <HeroSection/>
-        <Typography sx={{my: 3, mx:2, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }}}>
+        <Typography sx={{my: 3, mx:5, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, fontWeight: 450}} >
           Trending Movies</Typography>
         <MovieGrid
         movies={movies}
@@ -53,7 +53,14 @@ const Homepage = () => {
         onFavoriteToggle={toggleFavorite}
         />
         <Box display="flex" justifyContent="center" mt={3}>
-        <Button variant="contained" onClick={handleLoadMore}> Load more </Button>
+        <Button 
+          sx={{ backgroundColor: '#007acc', color: 'white', borderRadius: 30, px: 5,
+            '&:hover': { backgroundColor: '#0096FF'}
+          }} 
+          onClick={handleLoadMore}
+        > 
+          Load more 
+        </Button>
         </Box>
     </Box>
   );

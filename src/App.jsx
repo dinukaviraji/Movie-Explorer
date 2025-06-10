@@ -26,12 +26,13 @@ function App() {
           minHeight: '100vh',
           background: isDarkMode
             ? 'linear-gradient(to right, #0C134F, #03001C)'
-            : 'linear-gradient(to right, #7393B3, #5F9EA0)',
+            : 'linear-gradient(to bottom, #E5E4E2, #7393B3)',
           color: isDarkMode ? '#fff' : '#000',
+          display:"flex", flexDirection:"column", minHeight:"100vh"
         }}
       >
         <Navbar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
-        <Box sx={{ py:{xs:1, md:2}, px:{md:3} }}>
+        <Box flex={1}> 
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/movie/:id" element={<DetailsPage />} />

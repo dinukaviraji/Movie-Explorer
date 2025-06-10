@@ -2,7 +2,7 @@ import { AppBar, Toolbar, IconButton, Typography, Button, Drawer, List, ListItem
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState, useEffect } from 'react';
 import LoginModal from './LoginModal';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/popcorn.svg'
 
 const Navbar = ({ toggleTheme, isDarkMode }) => {

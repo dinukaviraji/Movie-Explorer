@@ -80,7 +80,7 @@ const BrowseMovies = () => {
   return (
 
     <Box sx={{ p: { xs: 1, md: 4 } }}>  
-      <Typography sx={{mt:6, mb:2, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, display: 'flex', justifyContent:{ xs: 'center', md: 'left' }}} >
+      <Typography sx={{mt:6, mb:2, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, display: 'flex', justifyContent:'center'}} >
         Browse Movies</Typography>
 
       <Box sx={{ mb: 3, flex: 1, display: 'flex', justifyContent: 'center' }}>
@@ -129,7 +129,7 @@ const BrowseMovies = () => {
           value={filters.genre}
           onChange={handleChange}
           displayEmpty
-          sx={{ minWidth: 80, bgcolor: '#f0f8ff', height: 35, width: {xs: 120, md: 180} }}
+          sx={{ minWidth: 80, bgcolor: '#f0f8ff', height: 35, width: {xs: '30vw', md: '10vw'} }}
         >
           <MenuItem value="" sx={{fontSize:{xs:'0.6rem', md:'0.8rem'}}} >All Genres</MenuItem>
           {genres.map((genre) => (
@@ -147,7 +147,7 @@ const BrowseMovies = () => {
         value={filters.year}
         onChange={handleChange}
         sx={{
-          width:{ xs:80, md: 180 },
+          width:{ xs:'20vw', md: '10vw' },
           bgcolor: '#f0f8ff',
           '& .MuiInputBase-root': {
             height: 35,
@@ -168,7 +168,7 @@ const BrowseMovies = () => {
           value={filters.rating}
           onChange={handleChange}
           displayEmpty
-          sx={{bgcolor: '#f0f8ff', height: 35, width: {xs: 130, md: 180}}}
+          sx={{bgcolor: '#f0f8ff', height: 35, width: {xs: '30vw', md: '10vw'}}}
         >
           <MenuItem value="">All Ratings</MenuItem>
           {[9, 8, 7, 6, 5].map((rating) => (
@@ -179,13 +179,13 @@ const BrowseMovies = () => {
         </Select>
 
         {/* Search Button for laptop screens */}
-        <Button variant="contained" onClick={handleSearch} sx={{height:35, width:150, display:{ xs: 'none', md: 'flex' }}}>
+        <Button sx={{backgroundColor: '#007acc', color: 'white', height:35, width:'10vw', display:{ xs: 'none', md: 'flex'}}} onClick={handleSearch} >
           Search
         </Button>
       </Box>
 
       {/* Search Button for mobile screens */}
-      <Button variant="contained" onClick={handleSearch} sx={{height:35, width:300, display:{ xs: 'flex', md: 'none' }, justifyContent: 'center', mx: 'auto'}}>
+      <Button sx={{backgroundColor: '#007acc', color: 'white', height:35, width:300, display:{ xs: 'flex', md: 'none'}, justifyContent: 'center', mx: 'auto'}} onClick={handleSearch}>
           Search
         </Button>
 
