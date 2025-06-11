@@ -117,7 +117,7 @@ const SigninModal = ({ open, onClose }) => {
               '& .MuiInputLabel-root': {fontSize:14, top:-7},
              '& .MuiInputLabel-shrink': {top:-1}}}
           />
-          <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white' }} onClick={handleSubmit}>
+          <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white', '&:hover': { backgroundColor: '#0047AB'}}} onClick={handleSubmit}>
             Sign Up
           </Button>
         </Box>

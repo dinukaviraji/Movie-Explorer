@@ -19,8 +19,11 @@ const Homepage = () => {
 
   useEffect(() => {
     fetchMovies(); // initial load
-   
-    setShowLoadMore(true); // Show "Load More" button after 2 seconds
+
+    setTimeout(() => {
+      setShowLoadMore(true);  // Show "Load More" button after 2 seconds
+    }, 2000); 
+    
     setShowTopic(true);  
   }, [page]);
 

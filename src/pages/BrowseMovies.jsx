@@ -198,13 +198,13 @@ const BrowseMovies = () => {
         </Box>
 
         {/* Search Button for laptop screens */}
-        <Button sx={{backgroundColor: '#007acc', color: 'white', height:35, width:'10vw', mt:3, display:{ xs: 'none', md: 'flex'}}} onClick={handleSearch} >
+        <Button sx={{backgroundColor: '#007acc', color: 'white', height:35, width:'10vw', mt:3, display:{ xs: 'none', md: 'flex'},'&:hover': { backgroundColor: '#0096FF'}}} onClick={handleSearch} >
           Search
         </Button>
       </Box>
 
       {/* Search Button for mobile screens */}
-      <Button sx={{backgroundColor: '#007acc', color: 'white', height:35, width:300, display:{ xs: 'flex', md: 'none'}, justifyContent: 'center', mx: 'auto'}} onClick={handleSearch}>
+      <Button sx={{backgroundColor: '#007acc', color: 'white', height:35, width:300, display:{ xs: 'flex', md: 'none'}, justifyContent: 'center', mx: 'auto','&:hover': { backgroundColor: '#0096FF'}}} onClick={handleSearch}>
           Search
         </Button>
 

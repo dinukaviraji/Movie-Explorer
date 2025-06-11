@@ -85,10 +85,10 @@ return (
        
             <Stack direction="row" spacing={0.5} alignItems="center">
               <StarIcon fontSize="small" sx={{ color: 'gold'}}/>
-              <Typography variant="body2" gap={2} color='white'> {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).slice(0,3).join(', ')} | {movie.release_date?.substring(0,4)}</Typography>
+              <Typography variant="body2" gap={2} color='white' fontFamily='Inter'> {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).slice(0,3).join(', ')} | {movie.release_date?.substring(0,4)}</Typography>
             </Stack>          
           
-            <Typography variant="body1" mt={2} width={{xs:'100%', md: '45vw'}} color='white' > 
+            <Typography sx={{mt:2, width:{xs:'100%', md: '45vw'}, fontFamily:'Inter', fontSize:{xs:'0.87rem',md:'1rem'}, color:'white'}}> 
               {movie.overview.split('. ').slice(0,2).join('. ')}.
             </Typography>
 
@@ -98,21 +98,22 @@ return (
                 TRAILER 
             </Button>
 
+              {/* Cast section for large screens - Inside the background image */}
             { screenHeight > 800 && ( // Show only if screen height is greater than 800px
             <>
             <Typography sx={{ color:'white', mt:4, fontFamily:'Sora', display:{xs:'none', md:'none', xl:'flex'}}}>
               Cast
             </Typography>
-            <Box sx={{display:{xs:'none', md:'none', xl:'flex'}, gap:1, mt:1, zIndex:3, position:'relative'}}>
-              {cast.slice(0, 20).filter((actor) => actor.profile_path) // Filtering out actors without profile images within first 6 actors
+            <Box sx={{display:{xs:'none', md:'none', xl:'flex'},flexDirection: 'row',overflowX: 'auto', gap:1, mt:1,px:1, zIndex:3, position:'relative', scrollSnapType: 'x mandatory',maxWidth: '100%','&::-webkit-scrollbar': { display: 'none' },whiteSpace: 'nowrap',  maxWidth: '98vw'}}>
+              {cast.filter((actor) => actor.profile_path) // Filtering out actors without profile images 
               .map(actor => (
-                <Box key={actor.id}>
+                <Box key={actor.id} sx={{flex: '0 0 auto', scrollSnapAlign: 'start', textAlign: 'center', }}>
                   <img
                     src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}` }
                     alt={actor.name}
-                    style={{ width: 65, height:80, borderRadius: 5, objectFit: 'cover'}}
+                    style={{ width:'4vw', height:'12vh', borderRadius: 5, objectFit: 'cover'}}
                   />
-                  <Typography sx={{textAlign:'center', lineHeight:1, color:'#353a3e', fontSize:'0.75rem', fontFamily:'Sora'}}>
+                  <Typography sx={{textAlign:'center', lineHeight:1, color:'#353a3e', fontSize:'0.75rem', fontFamily:'Sora', width: 65, overflow: 'hidden', textOverflow: 'ellipsis'}}>
                       {actor.name.split(' ')[0]}
                       <br />
                       {actor.name.split(' ')[1]}
@@ -141,7 +142,7 @@ return (
                   px: 2,
                   
                   '&::-webkit-scrollbar': { display: 'none' },
-                  zIndex:10,
+                  zIndex:3,
               }} >
               {backdrop.map((img, index) => (
                 <Box
@@ -149,8 +150,8 @@ return (
                   sx={{
                     flex: '0 0 auto',
                     scrollSnapAlign: 'start',
-                    width: 160,
-                    height: 90,
+                    width:'10vw',
+                    height:'12vh',
                     borderRadius: 2,
                     overflow: 'hidden',
                   }} >
@@ -216,7 +217,7 @@ return (
 
 
            {/* images horizontal carousel for small screens - Outside the background image */}
-        <Typography sx={{display:{xs:'flex', md:'none'}, mt:2, ml:2}}> Posters </Typography>
+        <Typography sx={{display:{xs:'flex', md:'none'}, my:2, ml:2, fontFamily:'Sora'}}> Posters </Typography>
         <Box sx={{position: 'relative', display: {xs:'flex', md:'none'},  overflowX: 'auto',
                 scrollSnapType: 'x mandatory', gap: 2, ml:2, '&::-webkit-scrollbar': { display: 'none' } }}>                 
           {backdrop.map((img, index) => (
@@ -235,7 +236,7 @@ return (
         </Box>
 
         {/* Cast section for small screens - Outside the background image*/}
-        <Typography sx={{display:{xs:'flex', md:'none'}, my:2, ml:2}}> Cast </Typography>
+        <Typography sx={{display:{xs:'flex', md:'none'}, my:2, ml:2, fontFamily:'Sora'}}> Cast </Typography>
         <Box
           sx={{    
             gap:2,
@@ -251,7 +252,7 @@ return (
                 alt={actor.name}
                 style={{ width: 60, height:60,borderRadius: '50%', objectFit: 'cover'}}
               />
-              <Typography sx={{textAlign:'center', lineHeight:1, fontSize:'0.75rem'}}>
+              <Typography sx={{textAlign:'center', lineHeight:1, fontSize:'0.75rem', fontFamily:'Sora'}}>
                   {actor.name.split(' ')[0]}
                   <br />
                   {actor.name.split(' ')[1]}

@@ -77,7 +77,7 @@ return (
                     sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, '& input': {padding:'8px 12px'}}, 
                           '& .MuiInputLabel-root': {fontSize:14, top:-7}, '& .MuiInputLabel-shrink': {top:-1}}}/>
 
-                <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white'}} onClick={handleLogin}>
+                <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white', '&:hover': { backgroundColor: '#0047AB'}}} onClick={handleLogin}>
                     Log In
                 </Button>
                 <Typography> Don't have an account? 
