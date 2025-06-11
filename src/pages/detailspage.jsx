@@ -29,6 +29,8 @@ const DetailsPage = () => {
   const handleOpen = () => setOpenCast(true);
   const handleClose = () => setOpenCast(false);
 
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+
   useEffect(() => {
     const loadDetails = async () => {
       try {
@@ -52,6 +54,9 @@ const DetailsPage = () => {
       } finally {
         setLoading(false);
       }
+      const handleResize = () => setScreenHeight(window.innerHeight);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
     };
 
     loadDetails();
@@ -70,10 +75,10 @@ return (
         width: '100%',
         height:  { xs: '500px', md: '100vh' }, 
         borderRadius: '10px',
-        // position: 'relative',
+        position: 'relative',
         zIndex: 1  }}> 
 
-          <Box sx={{px:{xs:2, md:4}, py:{xs:8, md:1}, position:'absolute', top: {xs:'1%', md:'50%'}}}>
+          <Box sx={{px:{xs:2, md:4}, py:{xs:8, md:1}, position:'absolute', top: {xs:'1vh', md:'45vh'}}}>
             <Typography sx={{fontSize: {xs: '1.5rem', md:'3rem'}, fontFamily:'Vogue', color:'white'}}>
               {movie.title}
             </Typography>      
@@ -83,17 +88,41 @@ return (
               <Typography variant="body2" gap={2} color='white'> {movie.vote_average?.toFixed(1)} | {movie.genres.map(genre => genre.name).slice(0,3).join(', ')} | {movie.release_date?.substring(0,4)}</Typography>
             </Stack>          
           
-            <Typography variant="body1" mt={2} width={{xs:'100%', md: '50%'}} color='white' > 
-              {movie.overview.split('. ').slice(0,2).join('. ')}
+            <Typography variant="body1" mt={2} width={{xs:'100%', md: '45vw'}} color='white' > 
+              {movie.overview.split('. ').slice(0,2).join('. ')}.
             </Typography>
 
-            <Button sx={{backgroundColor:'#0C134F', zIndex:3, color:'whitesmoke', px:4, py:1, mt:3,fontSize:'overline.fontSize',boxShadow: '0px 2px 5px rgba(0,0,0,0.3)', 
+            <Button sx={{backgroundColor:'#0C134F', zIndex:3, color:'whitesmoke', px:4, py:1, mt:2,fontSize:'overline.fontSize',boxShadow: '0px 2px 5px rgba(0,0,0,0.3)', 
             '&:hover': { boxShadow: '0px 4px 10px rgba(0,0,0,0.4)'}}} 
             onClick={() => window.open(`https://www.youtube.com/embed/${trailerKey}`,'_blank')}> 
                 TRAILER 
             </Button>
 
+            { screenHeight > 800 && ( // Show only if screen height is greater than 800px
+            <>
+            <Typography sx={{ color:'white', mt:4, fontFamily:'Sora', display:{xs:'none', md:'none', xl:'flex'}}}>
+              Cast
+            </Typography>
+            <Box sx={{display:{xs:'none', md:'none', xl:'flex'}, gap:1, mt:1, zIndex:3, position:'relative'}}>
+              {cast.slice(0, 20).filter((actor) => actor.profile_path) // Filtering out actors without profile images within first 6 actors
+              .map(actor => (
+                <Box key={actor.id}>
+                  <img
+                    src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}` }
+                    alt={actor.name}
+                    style={{ width: 65, height:80, borderRadius: 5, objectFit: 'cover'}}
+                  />
+                  <Typography sx={{textAlign:'center', lineHeight:1, color:'#353a3e', fontSize:'0.75rem', fontFamily:'Sora'}}>
+                      {actor.name.split(' ')[0]}
+                      <br />
+                      {actor.name.split(' ')[1]}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+            </>)}
           </Box>
+         
 
           <Typography sx={{position: 'absolute', top:'50%', left:'55%',display:{xs:'none', md:'flex'}, color:'white', fontFamily:'Sora'}}> 
                   Posters 
@@ -177,8 +206,8 @@ return (
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: '100%',
-                height: '100%',
+                width: '100vw',
+                height: '100vh',
                 background: `linear-gradient(to top, rgba(250, 250, 250, 0.6), transparent 70%)`,
                 zIndex: 2,
             }}/>
