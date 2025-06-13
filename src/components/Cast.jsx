@@ -14,7 +14,7 @@ const Cast = ({ cast, numberOfCast, movieTitle, Width, Height, Color }) => {
 
     return (
         <Box>  
-        <Typography sx={{position: 'relative', color:'white', fontFamily:'Sora', mb:2 }}> 
+        <Typography sx={{position: 'relative', color:'white', fontFamily:'Sora', mb:1 }}> 
             Cast 
         </Typography>
         <Box 
@@ -27,7 +27,7 @@ const Cast = ({ cast, numberOfCast, movieTitle, Width, Height, Color }) => {
                 alt={actor.name}
                 style={{width: cardWidth, height: cardHeight, borderRadius: 5, objectFit: 'cover'}}
                 />
-                <Typography sx={{textAlign:'center', lineHeight:1, color:textColor,  fontSize:'0.75rem', fontFamily:'Sora'}}>
+                <Typography sx={{textAlign:'center', lineHeight:1, color:textColor,  fontSize:'0.75rem', fontFamily:'Sora', fontWeight: 550}}>
                     {actor.name.split(' ')[0]}
                     <br />
                     {actor.name.split(' ')[1]}
@@ -36,7 +36,7 @@ const Cast = ({ cast, numberOfCast, movieTitle, Width, Height, Color }) => {
             ))}
             <Button
             onClick={handleOpen}
-            sx={{  width:'5vw', height:'15vh', borderRadius:5, textTransform: 'none', fontSize: '0.75rem', fontFamily:'Sora', backgroundColor:'#ccc', color:'black'
+            sx={{  width: cardWidth, height:cardHeight, borderRadius:5, textTransform: 'none', fontSize: '0.75rem', fontFamily:'Sora', backgroundColor:'#ccc', color:'black'
             }}>
                 View All
             </Button>

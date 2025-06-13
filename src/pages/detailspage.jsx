@@ -99,7 +99,7 @@ return (
               {/* Cast section for large screens - Inside the background image */}
             { screenHeight > 800 && ( // Show only if screen height is greater than 800px
               <Box sx={{ position:'relative', display:{xs:'none', md:'none', xl:'flex'}, zIndex:3, mt:5}}>
-              <Cast cast={cast} numberOfCast={8} movieTitle={movie.title} Width={'5vw'} Height={'15vh'} Color={'#353a3e'}/>
+              <Cast cast={cast} numberOfCast={10} movieTitle={movie.title} Width={'4vw'} Height={'12vh'} Color={'#353a3e'}/>
               </Box>
             )}
           </Box>
