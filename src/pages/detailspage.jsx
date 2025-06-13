@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getMovieDetails, getMovieCredits, getMovieVideos, getBackdrops } from '../api/api';
 import { Box, Typography, Button, Modal, Grid, IconButton, Stack} from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import Cast from '../components/Cast'; 
 
 const DetailsPage = () => {
   const { id } = useParams(); // Get the movie ID from the URL
@@ -25,9 +26,6 @@ const DetailsPage = () => {
     setSelectedImageIndex((index) => (index < backdrop.length - 1 ? index + 1 : index));
   };
 
-  const [openCast, setOpenCast] = useState(false);
-  const handleOpen = () => setOpenCast(true);
-  const handleClose = () => setOpenCast(false);
 
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
@@ -100,28 +98,10 @@ return (
 
               {/* Cast section for large screens - Inside the background image */}
             { screenHeight > 800 && ( // Show only if screen height is greater than 800px
-            <>
-            <Typography sx={{ color:'white', mt:4, fontFamily:'Sora', display:{xs:'none', md:'none', xl:'flex'}}}>
-              Cast
-            </Typography>
-            <Box sx={{display:{xs:'none', md:'none', xl:'flex'},flexDirection: 'row',overflowX: 'auto', gap:1, mt:1,px:1, zIndex:3, position:'relative', scrollSnapType: 'x mandatory',maxWidth: '100%','&::-webkit-scrollbar': { display: 'none' },whiteSpace: 'nowrap',  maxWidth: '98vw'}}>
-              {cast.filter((actor) => actor.profile_path) // Filtering out actors without profile images 
-              .map(actor => (
-                <Box key={actor.id} sx={{flex: '0 0 auto', scrollSnapAlign: 'start', textAlign: 'center', }}>
-                  <img
-                    src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}` }
-                    alt={actor.name}
-                    style={{ width:'5vw', height:'15vh', borderRadius: 5, objectFit: 'cover'}}
-                  />
-                  <Typography sx={{textAlign:'center', lineHeight:1, color:'#353a3e', fontSize:'0.8rem', fontFamily:'Sora', width: '5vw', overflow: 'hidden', textOverflow: 'ellipsis'}}>
-                      {actor.name.split(' ')[0]}
-                      <br />
-                      {actor.name.split(' ')[1]}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-            </>)}
+              <Box sx={{ position:'relative', display:{xs:'none', md:'none', xl:'flex'}, zIndex:3, mt:5}}>
+              <Cast cast={cast} numberOfCast={8} movieTitle={movie.title} Width={'5vw'} Height={'15vh'} Color={'#353a3e'}/>
+              </Box>
+            )}
           </Box>
          
 
@@ -172,35 +152,8 @@ return (
                     ))}
               </Box>
 
-          {/* Cast section for medium screens - Inside the background image */}
-          <Box>  
-            <Typography sx={{position: 'absolute', top:'73%', left:'55%',display:{xs:'none', md:'flex', xl:'none'}, color:'white', fontFamily:'Sora'}}> 
-                Cast 
-            </Typography>
-            <Box 
-              sx={{position: 'absolute', top:'78%', left:'55%', gap:1, display:{xs:'none', md:'flex', xl:'none'}, zIndex:3}}>
-              {cast.slice(0, 6).filter((actor) => actor.profile_path)  // Filering out actors without profile images within first 4 actors
-              .map(actor => (
-                <Box key={actor.id}>
-                  <img
-                    src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}` }
-                    alt={actor.name}
-                    style={{ width: 65, height:80, borderRadius: 5, objectFit: 'cover'}}
-                  />
-                  <Typography sx={{textAlign:'center', lineHeight:1, color:'#353a3e',  fontSize:'0.75rem', fontFamily:'Sora'}}>
-                      {actor.name.split(' ')[0]}
-                      <br />
-                      {actor.name.split(' ')[1]}
-                  </Typography>
-                </Box>
-              ))}
-              <Button
-                onClick={handleOpen}
-                sx={{ width: 65, height: 80, borderRadius:5, textTransform: 'none', fontSize: '0.75rem', backgroundColor:'#ccc', color:'black'
-                }}>
-                  View All
-              </Button>
-            </Box>    
+          <Box sx={{position: 'absolute', top:'71%', left:'55%',display:{xs:'none', md:'flex', xl:'none'}, zIndex:3}}>  
+             <Cast cast={cast} numberOfCast={5} movieTitle={movie.title} Width={'5vw'} Height={'15vh'} Color={'#353a3e'}/>
           </Box>
 
             <Box sx={{    // Transparent gradient overlay on the background image
@@ -236,44 +189,9 @@ return (
         </Box>
 
         {/* Cast section for small screens - Outside the background image*/}
-        <Typography sx={{display:{xs:'flex', md:'none'}, my:2, ml:2, fontFamily:'Sora'}}> Cast </Typography>
-        <Box
-          sx={{    
-            gap:2,
-            ml:2,
-            mb:6,
-            display:{xs:'flex', md:'none'},
-          }}>
-            {cast.slice(0, 3).filter((actor) => actor.profile_path)
-            .map(actor => (
-            <Box key={actor.id} >
-              <img
-                src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}` }
-                alt={actor.name}
-                style={{ width: 60, height:60,borderRadius: '50%', objectFit: 'cover'}}
-              />
-              <Typography sx={{textAlign:'center', lineHeight:1, fontSize:'0.75rem', fontFamily:'Sora'}}>
-                  {actor.name.split(' ')[0]}
-                  <br />
-                  {actor.name.split(' ')[1]}
-              </Typography>
-            </Box>
-            ))}
-
-            <Button
-              onClick={handleOpen}
-              sx={{
-                  width: 60,
-                  height: 60,
-                  borderRadius: '50%',
-                  textTransform: 'none',
-                  fontSize: '0.75rem',
-                  backgroundColor:'#ccc',
-                  color:'black'
-              }} >
-              View All
-            </Button>
-        </Box>                   
+        <Box sx={{position: 'relative', display:{xs:'flex', md:'none'}, zIndex:3, my:2, ml:2}}>
+          <Cast cast={cast} numberOfCast={4} movieTitle={movie.title} Width={'12vw'} Height={'15vh'}/>
+        </Box>                  
 
 
         {/* Modal for show expanded images */}
@@ -302,54 +220,7 @@ return (
         </Box>
       </Modal>
 
-          {/* Modal to Show Full Cast */}
-      <Modal
-        open={openCast}
-        onClose={handleClose}
-        sx={{ overflowY: 'auto' }}
-      >
-        <Box
-          sx={{
-            backdropFilter: 'blur(90px)',
-            margin: '5% auto',
-            padding: 4,
-            width: '70%',
-            maxHeight: '80vh',
-            borderRadius: 2,
-            boxShadow: 24,
-            overflow: 'auto',
-            '&::-webkit-scrollbar': { display: 'none' },
-          }}
-        >
-          <Typography  sx={{display:'flex', justifyContent:'center', color:'white',mb:2, fontFamily:'Sora', fontSize:{xs:'1rem', md:'1.5rem'} , textDecoration:'underline', textUnderlineOffset: '0.3rem'}}>
-            Cast of {movie.title}
-          </Typography>
-
-          <Grid container spacing={{xs:2,md:3}}>
-            {cast
-              .filter((actor) => actor.profile_path) // Filter out actor don't have images
-              .map((actor) => (
-              <Grid item key={actor.id}>
-                <Box textAlign="center">
-                  <Box
-                    component='img'
-                    src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}`}
-                    alt={actor.name}
-                    sx={{ width:{xs:60 ,md:110}, borderRadius: 2, objectFit: 'cover', }}
-                  />
-                  {/* check if the actor's name is too long. If it too long display second name in a new line */}
-                  <Typography sx={{ mt:1, color:'white', fontSize:{xs:'0.7rem', md:'0.875rem'}, fontFamily:'Sora',}}>  
-                    {actor.name.split(' ').slice(0,2).join(' ').length > 10 ?                                          
-                    <> {actor.name.split(' ')[0]} <br/> {actor.name.split(' ')[1]} </> : actor.name.split(' ').slice(0,2).join(' ')} 
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Modal>
-
-    </Box>
+    </Box> 
 );
 };
 
