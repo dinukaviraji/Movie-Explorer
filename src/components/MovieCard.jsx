@@ -17,7 +17,7 @@ const MovieCard = ({ movie, isFavorited, onFavoriteToggle}) => {
         m: 1,
         cursor: 'pointer',
         position: 'relative',
-        '&:hover': { boxShadow: 6 },
+        '&:hover': { boxShadow: 6, transform: 'scale(1.02)'},
       }} 
       onClick={(e) => {
         if (e.ctrlKey || e.metaKey) {
