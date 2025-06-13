@@ -190,7 +190,7 @@ return (
 
         {/* Cast section for small screens - Outside the background image*/}
         <Box sx={{position: 'relative', display:{xs:'flex', md:'none'}, zIndex:3, my:2, ml:2}}>
-          <Cast cast={cast} numberOfCast={4} movieTitle={movie.title} Width={'12vw'} Height={'15vh'}/>
+          <Cast cast={cast} numberOfCast={3} movieTitle={movie.title} Width={'20vw'} Height={'15vh'}/>
         </Box>                  
 
 
