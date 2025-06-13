@@ -21,9 +21,12 @@ const Homepage = () => {
     fetchMovies(); // initial load
 
     setTimeout(() => {
-      setShowLoadMore(true);
-      setShowTopic(true);  // Show "Load More" button after 2 seconds
+      setShowTopic(true); 
     }, 100);   
+
+    setTimeout(() => {
+        setShowLoadMore(true); // Show "Load More" button after 2 seconds
+    }, 2000);
   }, [page]);
 
   // Load more movies by increasing the page number
