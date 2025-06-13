@@ -101,7 +101,9 @@ const BrowseMovies = () => {
               '& fieldset': {
                   border: 'none',}
             },
-           
+           '& input::placeholder': {
+                    fontFamily: 'ClashGrotesk',
+            }
           }}
           InputProps={{
               endAdornment: (
@@ -121,7 +123,7 @@ const BrowseMovies = () => {
         {/* Genre Dropdown */}
       
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: { xs: '30vw', sm: '15vw', md: '10vw' } }}>
-          <Typography sx={{ fontSize: { xs: '0.7rem', md: '0.85rem' }, mb: 0.5 }}>
+          <Typography sx={{fontSize: { xs: '0.8rem', md: '0.9rem', fontFamily:'Sora'}, mb: 0.5 }}>
             Genre :
           </Typography>
           <Select
@@ -134,12 +136,13 @@ const BrowseMovies = () => {
               bgcolor: '#f0f8ff',
               height: 35,
               fontSize: { xs: '0.7rem', md: '0.85rem' },
-              width: '100%'
+              width: '100%',
+              fontFamily: 'Sora'
             }}
           >
             <MenuItem value="">All</MenuItem>
             {genres.map((genre) => (
-              <MenuItem key={genre.id} value={genre.id}>
+              <MenuItem key={genre.id} value={genre.id} sx={{fontFamily: 'Sora'}}>
                 {genre.name}
               </MenuItem>
             ))}
@@ -151,7 +154,7 @@ const BrowseMovies = () => {
         {/* Year Input */}
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: { xs: '20vw', sm: '15vw', md: '10vw' } }}>
 
-          <Typography sx={{ fontSize: { xs: '0.7rem', md: '0.85rem' }, mb: 0.5 }}>
+          <Typography sx={{ fontSize:{xs: '0.8rem', md: '0.9rem', fontFamily:'Sora'}, mb: 0.5 }}>
               Year :
           </Typography>
           <TextField
@@ -171,14 +174,15 @@ const BrowseMovies = () => {
             },
             '& .MuiInputLabel-shrink': {
               top: 0,
-            }
+            },
+            fontFamily: 'Sora'
             }}
           />
         </Box>
 
         {/* Rating Dropdown */}
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: { xs: '30vw', sm: '15vw', md: '10vw' } }}>
-          <Typography sx={{ fontSize: { xs: '0.7rem', md: '0.85rem' }, mb: 0.5 }}>
+          <Typography sx={{ fontSize: {xs:'0.8rem', md: '0.9rem'}, fontFamily:'Sora', mb: 0.5 }}>
             Rating :
           </Typography>
           <Select
@@ -186,11 +190,11 @@ const BrowseMovies = () => {
             value={filters.rating}
             onChange={handleChange}
             displayEmpty
-            sx={{bgcolor: '#f0f8ff', height: 35, width: {xs: '30vw',sm:'15vw', md: '10vw'}, fontSize: { xs: '0.7rem', md: '0.85rem' }}}
+            sx={{bgcolor: '#f0f8ff', height: 35, width: {xs: '30vw',sm:'15vw', md: '10vw'}, fontSize: {xs: '0.7rem', md: '0.85rem'}, fontFamily: 'Sora'}}
           >
             <MenuItem value=""> All </MenuItem>
             {[9, 8, 7, 6, 5].map((rating) => (
-              <MenuItem key={rating} value={rating}>
+              <MenuItem key={rating} value={rating} sx={{fontFamily: 'Sora'}}>
                 {`${rating}+ stars`}
               </MenuItem>
             ))}
@@ -198,13 +202,13 @@ const BrowseMovies = () => {
         </Box>
 
         {/* Search Button for laptop screens */}
-        <Button sx={{backgroundColor: '#007acc', color: 'white', height:35, width:'10vw', mt:3, display:{ xs: 'none', md: 'flex'},'&:hover': { backgroundColor: '#0096FF'}}} onClick={handleSearch} >
+        <Button sx={{backgroundColor: '#007acc', color: 'white', fontFamily:'Sora', height:35, width:'10vw', mt:3, display:{ xs: 'none', md: 'flex'},'&:hover': { backgroundColor: '#0096FF'}}} onClick={handleSearch} >
           Search
         </Button>
       </Box>
 
       {/* Search Button for mobile screens */}
-      <Button sx={{backgroundColor: '#007acc', color: 'white', height:35, width:300, display:{ xs: 'flex', md: 'none'}, justifyContent: 'center', mx: 'auto','&:hover': { backgroundColor: '#0096FF'}}} onClick={handleSearch}>
+      <Button sx={{backgroundColor: '#007acc', color: 'white',fontFamily:'Sora', height:35, width:300, display:{ xs: 'flex', md: 'none'}, justifyContent: 'center', mx: 'auto','&:hover': { backgroundColor: '#0096FF'}}} onClick={handleSearch}>
           Search
         </Button>
 

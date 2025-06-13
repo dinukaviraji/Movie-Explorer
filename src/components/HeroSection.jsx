@@ -49,7 +49,7 @@ return (
     <Box
         sx={{
             position: 'relative',
-            height: '55vh',
+            height: '60vh',
             backgroundSize: 'cover',
             backgroundImage: `url(https://image.tmdb.org/t/p/original${currentMovie.backdrop_path})`,
             backgroundPosition: 'center',
@@ -82,7 +82,10 @@ return (
                     '& fieldset': {
                         border: 'none',
                     }
-                }
+                },
+                '& input::placeholder': {
+                    fontFamily: 'ClashGrotesk',
+                },
                 }}
                 
                 InputProps={{
@@ -97,7 +100,7 @@ return (
             />
         </Box>
 
-        <Typography fontFamily={'DM Serif Display'} fontSize={{ xs: '1.5rem', md: '1.6rem', xl: '2rem' }}>
+        <Typography sx={{fontFamily:'Vogue', fontSize: {xs: '1.5rem', md: '1.8rem', xl: '2.2rem'}, fontWeight: 550}}>
             {currentMovie.title}
         </Typography>
     </Box>

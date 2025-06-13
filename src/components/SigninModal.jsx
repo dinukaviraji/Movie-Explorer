@@ -64,7 +64,7 @@ const SigninModal = ({ open, onClose }) => {
         }}
       >
         <Box sx={style}>
-          <Typography variant="h6" fontWeight="bold">
+          <Typography sx={{ my: 2, fontFamily: 'ClashGrotesk', fontSize: 20, fontWeight: 500, textAlign: 'center' }}>
             Create an Account!
           </Typography>
 
@@ -75,9 +75,8 @@ const SigninModal = ({ open, onClose }) => {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
-            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, 
-              '& input': {padding:'8px 12px'}}, 
-              '& .MuiInputLabel-root': {fontSize:14, top:-7},
+            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, fontFamily:'ClashGrotesk', '& input': {padding:'8px 12px'}}, 
+              '& .MuiInputLabel-root': {fontSize:14, top:-7,fontFamily:'ClashGrotesk'},
              '& .MuiInputLabel-shrink': {top:-1}}}
           />
           <TextField
@@ -87,9 +86,8 @@ const SigninModal = ({ open, onClose }) => {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
-            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, 
-              '& input': {padding:'8px 12px'}}, 
-              '& .MuiInputLabel-root': {fontSize:14, top:-7},
+            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, fontFamily:'ClashGrotesk','& input': {padding:'8px 12px'}}, 
+              '& .MuiInputLabel-root': {fontSize:14, top:-7, fontFamily:'ClashGrotesk'},
              '& .MuiInputLabel-shrink': {top:-1}}}
           />
           <TextField
@@ -99,9 +97,8 @@ const SigninModal = ({ open, onClose }) => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, 
-              '& input': {padding:'8px 12px'}}, 
-              '& .MuiInputLabel-root': {fontSize:14, top:-7},
+            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, fontFamily:'ClashGrotesk', '& input': {padding:'8px 12px'}}, 
+              '& .MuiInputLabel-root': {fontSize:14, top:-7,fontFamily:'ClashGrotesk'},
              '& .MuiInputLabel-shrink': {top:-1}}}
           />
           <TextField
@@ -112,12 +109,11 @@ const SigninModal = ({ open, onClose }) => {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, 
-              '& input': {padding:'8px 12px'}}, 
-              '& .MuiInputLabel-root': {fontSize:14, top:-7},
+            sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14,fontFamily:'ClashGrotesk', '& input': {padding:'8px 12px'}}, 
+              '& .MuiInputLabel-root': {fontSize:14, top:-7,fontFamily:'ClashGrotesk'},
              '& .MuiInputLabel-shrink': {top:-1}}}
           />
-          <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white', '&:hover': { backgroundColor: '#0047AB'}}} onClick={handleSubmit}>
+          <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white', fontFamily: 'ClashGrotesk', '&:hover': { backgroundColor: '#0047AB'}}} onClick={handleSubmit}>
             Sign Up
           </Button>
         </Box>

@@ -21,10 +21,9 @@ const Homepage = () => {
     fetchMovies(); // initial load
 
     setTimeout(() => {
-      setShowLoadMore(true);  // Show "Load More" button after 2 seconds
-    }, 2000); 
-    
-    setShowTopic(true);  
+      setShowLoadMore(true);
+      setShowTopic(true);  // Show "Load More" button after 2 seconds
+    }, 100);   
   }, [page]);
 
   // Load more movies by increasing the page number
@@ -50,9 +49,9 @@ const Homepage = () => {
 
   return (
     <Box mb={5}>
-        <HeroSection/>
-        { showTopic &&
-          <Typography sx={{my: 3, mx:5, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, fontWeight: 450}} >
+        <HeroSection onLoadComplete={() => setHeroLoaded(true)}/>
+        {showTopic &&
+          <Typography sx={{my: 3, mx:5, fontFamily: 'ClashGrotesk', fontSize:{ xs: '1.4rem', md: '1.6rem' }, fontWeight: 400}} >
             Trending Movies
           </Typography> }
 
@@ -61,11 +60,12 @@ const Homepage = () => {
         onMovieClick={(movie) => console.log('Clicked:', movie)}
         favorites={favorites}
         onFavoriteToggle={toggleFavorite}
+        
         />
         { showLoadMore && 
-          <Box display="flex" justifyContent="center" mt={3}>
+          <Box display="flex" justifyContent="center" mt={5}>
             <Button 
-              sx={{ backgroundColor: '#007acc', color: 'white', borderRadius: 30, px: 5,
+              sx={{ backgroundColor: '#007acc', color: 'white', borderRadius: 30, px: 5, fontFamily: 'Sora',
                 '&:hover': { backgroundColor: '#0096FF'}
               }} 
               onClick={handleLoadMore}

@@ -111,9 +111,9 @@ return (
                   <img
                     src={ `https://image.tmdb.org/t/p/w500${actor.profile_path}` }
                     alt={actor.name}
-                    style={{ width:'4vw', height:'12vh', borderRadius: 5, objectFit: 'cover'}}
+                    style={{ width:'5vw', height:'15vh', borderRadius: 5, objectFit: 'cover'}}
                   />
-                  <Typography sx={{textAlign:'center', lineHeight:1, color:'#353a3e', fontSize:'0.75rem', fontFamily:'Sora', width: 65, overflow: 'hidden', textOverflow: 'ellipsis'}}>
+                  <Typography sx={{textAlign:'center', lineHeight:1, color:'#353a3e', fontSize:'0.8rem', fontFamily:'Sora', width: '5vw', overflow: 'hidden', textOverflow: 'ellipsis'}}>
                       {actor.name.split(' ')[0]}
                       <br />
                       {actor.name.split(' ')[1]}

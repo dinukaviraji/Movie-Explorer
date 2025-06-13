@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Homepage from './pages/homepage';
 import DetailsPage from './pages/detailspage';
 import BrowseMovies from './pages/BrowseMovies';

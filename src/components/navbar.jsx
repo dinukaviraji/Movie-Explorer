@@ -48,7 +48,7 @@ return (
             boxShadow: show ? undefined : 'none',
         }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', display: {xs:'none',md:'flex'}, alignItems: 'center', fontFamily: 'GODOFWAR', cursor:"pointer"}} onClick={() => {navigate('/')}}>
+                <Typography variant="h5" component="div" sx={{ fontWeight:600, display: {xs:'none',md:'flex'}, alignItems: 'center', fontFamily: 'GODOFWAR', cursor:"pointer"}} onClick={() => {navigate('/')}}>
                     <img src={logo} alt="Logo" style={{ width: 30, marginRight: 8 }} />
                     PopCorn
                 </Typography>
@@ -56,7 +56,7 @@ return (
                {/* Desktop Menu  */}
                 <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
                     {navLinks.map((text) => (
-                        <Button key={text} color="inherit" sx={{ fontWeight: 'bold',  textTransform: 'none' }} component={Link} to={getPath(text)}>
+                        <Button key={text} sx={{fontWeight: 500, fontFamily:'ClashGrotesk', textTransform: 'none', color:'white', fontSize:'1rem' }} component={Link} to={getPath(text)}>
                             {text}</Button>
                     ))}
                 </Box>
@@ -65,16 +65,15 @@ return (
                 {/* Mobile Menu Button */}
                 <IconButton
                     edge="start"
-                    color="inherit"
                     aria-label="menu"
-                    sx={{ display: { xs: 'flex', md: 'none' } }}
+                    sx={{ display: { xs: 'flex', md: 'none' }, color: 'white' }}
                     onClick={toggleDrawer(true)}
                 >
                     <MenuIcon />
                 </IconButton>
 
                 {/* Logo in mobile screens */}
-                <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', display: {xs:'flex',md:'none'}, alignItems: 'center',justifyContent:'center' , fontFamily: 'GODOFWAR'}} onClick={() => {navigate('/')}}>
+                <Typography variant="h6" component="div" sx={{ fontWeight:600, display: {xs:'flex',md:'none'}, alignItems: 'center',justifyContent:'center' , fontFamily: 'GODOFWAR'}} onClick={() => {navigate('/')}}>
                     <img src={logo} alt="Logo" style={{ width: 25, marginRight: 8 }} />
                     PopCorn
                 </Typography>
@@ -83,7 +82,7 @@ return (
                 <Box sx={{ display: 'flex', gap: 1 }}>
                 <Switch checked={isDarkMode} onChange={toggleTheme} />
 
-                <Button color="inherit" sx={{ fontWeight: 'bold', textTransform:'none' }} onClick={() => setLoginOpen(true)}>
+                <Button sx={{fontWeight: 500, fontFamily:'ClashGrotesk', textTransform: 'none', color:'white', fontSize:'1rem' }} onClick={() => setLoginOpen(true)}>
                     Login</Button>
                 </Box>
 
@@ -105,7 +104,8 @@ return (
             <List sx={{ width: 200 }}>
                 {navLinks.map((text) => (
                     <ListItem button key={text} onClick={toggleDrawer(false)}>
-                        <ListItemText primary={<Typography sx={{color:'wheat', textDecoration: 'none'}} component={Link} to={getPath(text)} > {text}</Typography>} />
+                        <ListItemText primary={<Typography sx={{fontFamily:'ClashGrotesk', textDecoration: 'none', color:'wheat', fontSize:'1rem' }} component={Link} to={getPath(text)} > 
+                            {text}</Typography>} />
                     </ListItem>
                 ))}
             </List>

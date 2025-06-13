@@ -60,28 +60,28 @@ return (
             }}
         >
             <Box sx={style}>
-                <Typography variant="h6" fontWeight="bold" >
+                <Typography sx={{ my: 2, fontFamily: 'ClashGrotesk', fontSize: 22, fontWeight: 500, textAlign: 'center' }}>
                     Welcome!
                 </Typography>
-                <Typography fontSize= '1rem' mb={2}>
+                <Typography sx={{ my: 2, fontFamily: 'ClashGrotesk', fontSize: 20, fontWeight: 300, textAlign: 'center' }}>
                     Log in to continue
                 </Typography>
                 <TextField label="Email" fullWidth margin="normal" value={email}
                     onChange={(e) => setEmail(e.target.value)} 
                      // These styles for change the default textfield styles 
-                    sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, '& input': {padding:'8px 12px'}}, 
-                          '& .MuiInputLabel-root': {fontSize:14, top:-7}, '& .MuiInputLabel-shrink': {top:-1}}}/>
+                    sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, '& input': {padding:'8px 12px'},fontFamily:'ClashGrotesk'}, 
+                          '& .MuiInputLabel-root': {fontSize:14, top:-7, fontFamily:'ClashGrotesk'}, '& .MuiInputLabel-shrink': {top:-1}}}/>
 
                 <TextField label="Password" type="password" fullWidth margin="normal" value={password}
                     onChange={(e) => setPassword(e.target.value)} 
-                    sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, '& input': {padding:'8px 12px'}}, 
-                          '& .MuiInputLabel-root': {fontSize:14, top:-7}, '& .MuiInputLabel-shrink': {top:-1}}}/>
+                    sx={{'& .MuiInputBase-root': {height: 35, fontSize: 14, '& input': {padding:'8px 12px'},fontFamily:'ClashGrotesk'}, 
+                          '& .MuiInputLabel-root': {fontSize:14, top:-7, fontFamily:'ClashGrotesk'}, '& .MuiInputLabel-shrink': {top:-1}}}/>
 
-                <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white', '&:hover': { backgroundColor: '#0047AB'}}} onClick={handleLogin}>
+                <Button fullWidth sx={{ my: 2, backgroundColor:'#0C134F', color:'white', '&:hover': { backgroundColor: '#0047AB'},fontFamily: 'ClashGrotesk'}} onClick={handleLogin}>
                     Log In
                 </Button>
-                <Typography> Don't have an account? 
-                  <Button onClick={() => {setSigninOpen(true); onClose();}} sx={{color:'#1e69b5',background:'none'}} > 
+                <Typography sx={{fontFamily: 'ClashGrotesk'}}> Don't have an account? 
+                  <Button onClick={() => {setSigninOpen(true); onClose();}} sx={{color:'#1e69b5',background:'none',fontFamily: 'ClashGrotesk'}} > 
                     Sign Up</Button> 
                 </Typography>
             </Box>
